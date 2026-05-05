@@ -106,6 +106,39 @@ button, select { font: inherit; }
   gap:12px;
   margin-top:20px;
 }
+.route-strip { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.route-card {
+  min-height: 166px;
+  border-radius: 24px;
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,244,231,.88));
+  box-shadow: var(--shadow-soft);
+  padding: 18px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+}
+.route-card strong { font-size: 24px; letter-spacing: -.03em; }
+.route-card em { color: var(--muted); font-style: normal; font-weight: 700; }
+.route-step {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(255,107,53,.11);
+  color: var(--accent-dark);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+.route-active {
+  background: linear-gradient(180deg, #fff2e8, #fffdf8);
+  border-color: rgba(255,107,53,.24);
+}
 .visual-shot {
   position:relative;
   min-height:166px;
@@ -208,6 +241,54 @@ p { color: var(--muted); font-size: 18px; line-height: 1.58; }
 .grid, .home-grid, .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 22px; }
 .compact-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
 .three-col { display:grid; grid-template-columns: 1.1fr 1fr 1fr; gap: 16px; margin-top: 18px; }
+.landing-utility { display: flex; justify-content: flex-end; margin-bottom: 8px; }
+.selectors-secondary { margin-top: 0; }
+.selectors-secondary label { font-size: 13px; color: var(--muted); }
+.selectors-secondary select {
+  min-width: 148px;
+  padding: 10px 12px;
+  background: rgba(255,255,255,.84);
+}
+.low-emphasis { opacity: .84; }
+.meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+.meta-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(22,19,17,.06);
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 900;
+}
+.cta-stack { display: flex; flex-direction: column; gap: 12px; width: min(340px, 100%); }
+.below-fold-stack {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(22,19,17,.08);
+}
+.how-it-works ol {
+  margin: 16px 0 0;
+  padding-left: 20px;
+  display: grid;
+  gap: 12px;
+}
+.how-it-works li { color: var(--ink); }
+.how-it-works li span { display: block; color: var(--muted); margin-top: 4px; font-size: 15px; }
+.below-grid { margin-top: 16px; }
+.settings-box {
+  margin-top: 18px;
+  padding: 16px;
+  border: 1px dashed var(--line);
+  border-radius: 22px;
+  background: rgba(255,255,255,.56);
+}
+.settings-box p { font-size: 15px; margin: 8px 0 0; }
 .word, .phrase, .message, .info-box, .exercise, .pattern-box, .drill-card, .word-panel, .branch-card, .summary-card {
   padding: 16px;
   border: 1px solid var(--line);
@@ -275,6 +356,65 @@ p { color: var(--muted); font-size: 18px; line-height: 1.58; }
 .photo-caption em { color: var(--accent-dark); font-style: normal; font-weight: 850; }
 .exercise, .pattern-box, .word-panel, .handoff-card { margin-top: 18px; }
 .memory-stage { display:grid; grid-template-columns: minmax(220px, .9fr) 1.1fr; gap:16px; align-items:stretch; margin-top:14px; }
+.word-flow-shell { padding: 20px; }
+.word-flow-intro { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 12px; }
+.single-word-card {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: minmax(260px, .95fr) 1fr;
+  gap: 18px;
+  align-items: stretch;
+}
+.single-word-photo {
+  min-height: 320px;
+  border-radius: 24px;
+  background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(0,0,0,.28)), var(--photo) center/cover;
+  box-shadow: var(--shadow-soft);
+}
+.single-word-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 12px 0;
+}
+.single-word-copy strong {
+  font-size: clamp(34px, 5vw, 52px);
+  letter-spacing: -.05em;
+  line-height: .95;
+}
+.word-translation {
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: rgba(22,19,17,.04);
+}
+.word-translation em {
+  display: block;
+  color: var(--accent-dark);
+  font-style: normal;
+  font-weight: 900;
+}
+.word-translation p { margin: 8px 0 0; font-size: 15px; }
+.single-word-actions {
+  margin-top: 18px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+.small-choice { padding: 10px 12px; }
+.quiz-card .single-word-copy strong { font-size: 28px; }
+.quiz-stack {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  width: min(360px, 100%);
+}
+.quiz-choice {
+  justify-content: flex-start;
+  border-radius: 16px;
+  width: 100%;
+}
 .memory-photo {
   min-height: 220px;
   border-radius: 24px;
@@ -417,13 +557,16 @@ p { color: var(--muted); font-size: 18px; line-height: 1.58; }
   .app { grid-template-columns: 1fr; }
   .sidebar { position: relative; height: auto; }
   .hero, .three-col { grid-template-columns: 1fr; }
-  .visual-strip { grid-template-columns: 1fr; }
+  .visual-strip, .route-strip, .single-word-card { grid-template-columns: 1fr; }
   .main { padding: 18px; }
 }
 @media (max-width: 720px) {
   .memory-stage, .hero-panel { grid-template-columns: 1fr; display:grid; }
   .content-card { padding: 22px; }
   h1 { font-size: 42px; }
+  .single-word-photo { min-height: 240px; }
+  .single-word-actions, .word-flow-intro { flex-direction: column; }
+  .cta-stack { width: 100%; }
 }
 
 </style>
@@ -494,6 +637,12 @@ const phraseItems = [
   ['¿Puede repetir, por favor?', 'Повторите, пожалуйста.', 'Фраза восстановления, когда речь слишком быстрая.'],
   ['Más despacio, por favor.', 'Помедленнее, пожалуйста.', 'Ещё один безопасный recovery move.'],
   ['Entonces, ¿tengo que ir allí?', 'То есть мне нужно идти туда?', 'Проверка понимания перед действием.']
+];
+
+const vocabFlowItems = [
+  ['llegadas', 'прилёты', 'Зона, куда ты попадаешь сразу после рейса.', photoLibrary.arrivals],
+  ['aseos / baño', 'туалет', 'Один из самых полезных знаков, когда нужно быстро сориентироваться.', photoLibrary.signs],
+  ['control de pasaportes', 'паспортный контроль', 'Первая обязательная точка, где нужно понять вопрос и спокойно ответить.', photoLibrary.security]
 ];
 
 const branchData = {
@@ -574,10 +723,13 @@ const state = {
   index: 0,
   branch: 'transfer',
   showHints: true,
-  memoryRound: 0,
-  memoryScore: 0,
-  memoryChoice: null,
-  memoryAnswered: false,
+  vocabStage: 'intro',
+  vocabCardIndex: 0,
+  vocabQuizIndex: 0,
+  vocabQuizChoice: null,
+  vocabQuizAnswered: false,
+  vocabQuizScore: 0,
+  vocabTranslationOpen: false,
   phraseBuild: [],
   phraseTarget: ['¿', 'Me', 'puede', 'ayudar', '?'],
   selectedQuiz: null,
@@ -586,8 +738,6 @@ const state = {
   voiceDone: false,
   voiceChecked: false
 };
-
-const memoryDeck = vocabItems.map((w, i) => ({ es: w[0], ru: w[1], hint: w[2], photo: w[3], id: i }));
 
 const screen = document.getElementById('screen');
 const steps = document.getElementById('steps');
@@ -598,42 +748,83 @@ const heroTitle = document.getElementById('heroTitle');
 const heroCopy = document.getElementById('heroCopy');
 const progressMeta = document.getElementById('progressMeta');
 
-function vocabCards() {
-  return vocabItems.map((w) => `<article class="photo-card" style="--photo:${w[3]}"><div class="photo-placeholder" role="img" aria-label="Реальное фото аэропортной среды: ${w[1]}"><span>${w[0]}</span></div><div class="photo-caption"><strong>${w[0]}</strong><em>${w[1]}</em><p>${w[2]}</p></div></article>`).join('');
-}
-
 function visualStrip() {
-  return `<div class="visual-strip"><div class="visual-shot large" style="--photo:${photoLibrary.arrivals}"><span>Airport arrival</span></div><div class="visual-shot" style="--photo:${photoLibrary.signs}"><span>Signs & navigation</span></div><div class="visual-shot" style="--photo:${photoLibrary.security}"><span>Passport control</span></div></div>`;
+  return `<div class="visual-strip route-strip"><button class="route-card route-active" onclick="go(1)"><span class="route-step">Step 1</span><strong>Airport arrival</strong><em>Start here</em></button><button class="route-card" onclick="flash('Step 2 opens after the airport arrival scene.')"><span class="route-step">Step 2</span><strong>Signs & navigation</strong><em>Read the airport around you</em></button><button class="route-card" onclick="flash('Step 3 opens after the airport arrival scene.')"><span class="route-step">Step 3</span><strong>Passport control</strong><em>Short pressure moment before entry</em></button></div>`;
 }
 
-function memoryOptions(round) {
-  const target = memoryDeck[round % memoryDeck.length];
-  const pool = memoryDeck.filter(x => x.es !== target.es);
-  const distractors = [pool[(round + 2) % pool.length], pool[(round + 5) % pool.length], pool[(round + 8) % pool.length], pool[(round + 10) % pool.length]];
-  return [target, ...distractors].sort((a, b) => ((a.es.length + round) % 5) - ((b.es.length + round) % 5));
-}
-
-function chooseMemory(value) {
-  if (state.memoryAnswered) return;
-  const target = memoryDeck[state.memoryRound % memoryDeck.length];
-  state.memoryChoice = value;
-  state.memoryAnswered = true;
-  if (value === target.es) state.memoryScore += 1;
+function startVocabFlow() {
+  state.vocabStage = 'cards';
+  state.vocabCardIndex = 0;
+  state.vocabTranslationOpen = false;
   render();
 }
 
-function nextMemory() {
-  state.memoryRound = (state.memoryRound + 1) % memoryDeck.length;
-  state.memoryChoice = null;
-  state.memoryAnswered = false;
+function nextVocabCard() {
+  if (state.vocabCardIndex < vocabFlowItems.length - 1) {
+    state.vocabCardIndex += 1;
+    state.vocabTranslationOpen = false;
+  } else {
+    state.vocabStage = 'ready';
+  }
   render();
 }
 
-function resetMemory() {
-  state.memoryRound = 0;
-  state.memoryScore = 0;
-  state.memoryChoice = null;
-  state.memoryAnswered = false;
+function prevVocabCard() {
+  if (state.vocabCardIndex > 0) {
+    state.vocabCardIndex -= 1;
+    state.vocabTranslationOpen = false;
+    render();
+  }
+}
+
+function startVocabQuiz() {
+  state.vocabStage = 'quiz';
+  state.vocabQuizIndex = 0;
+  state.vocabQuizChoice = null;
+  state.vocabQuizAnswered = false;
+  state.vocabQuizScore = 0;
+  render();
+}
+
+function vocabQuizOptions(index) {
+  const target = vocabFlowItems[index];
+  const others = vocabFlowItems.filter((item) => item[0] !== target[0]).map((item) => item[0]);
+  return [target[0], ...others.slice(0, 2)].sort((a, b) => a.localeCompare(b));
+}
+
+function chooseVocabQuiz(value) {
+  if (state.vocabQuizAnswered) return;
+  const target = vocabFlowItems[state.vocabQuizIndex][0];
+  state.vocabQuizChoice = value;
+  state.vocabQuizAnswered = true;
+  if (value === target) state.vocabQuizScore += 1;
+  render();
+}
+
+function nextVocabQuiz() {
+  if (state.vocabQuizIndex < vocabFlowItems.length - 1) {
+    state.vocabQuizIndex += 1;
+    state.vocabQuizChoice = null;
+    state.vocabQuizAnswered = false;
+  } else {
+    state.vocabStage = 'result';
+  }
+  render();
+}
+
+function resetVocabFlow() {
+  state.vocabStage = 'intro';
+  state.vocabCardIndex = 0;
+  state.vocabQuizIndex = 0;
+  state.vocabQuizChoice = null;
+  state.vocabQuizAnswered = false;
+  state.vocabQuizScore = 0;
+  state.vocabTranslationOpen = false;
+  render();
+}
+
+function toggleVocabTranslation() {
+  state.vocabTranslationOpen = !state.vocabTranslationOpen;
   render();
 }
 
@@ -646,10 +837,14 @@ function setBranch(branch) { state.branch = branch; state.index = 1; render(); }
 function setDeep() { state.mode = 'deep'; state.index = 0; render(); }
 function setQuick() { state.mode = 'quick'; state.index = 0; render(); }
 function go(i) { state.index = i; render(); }
+function scrollToHowItWorks() {
+  const target = document.getElementById('howItWorks');
+  if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
 
 function readinessScore() {
   let score = 0;
-  if (state.memoryScore >= 3) score += 1;
+  if (state.vocabQuizScore >= 2) score += 1;
   if (state.selectedQuiz === 'aseos / baño') score += 1;
   if (state.phraseBuild.join(' ') === state.phraseTarget.join(' ')) score += 1;
   if (state.selectedRescue) score += 1;
@@ -714,12 +909,28 @@ function handoffCard({ mode, branch, pending, phrases }) {
   return `<div class="handoff-card"><div><span class="section-kicker">Telegram handoff</span><h3>Переход не теряет состояние сцены</h3><p>Кнопка открывает Telegram сразу в нужной задаче. Это не “пойти в бот”, а “продолжить тот же урок в performance-режиме”.</p></div><div class="state-pill-row"><span class="state-pill">scene_id: airport_01</span><span class="state-pill">mode: ${mode}</span><span class="state-pill">branch: ${branch}</span><span class="state-pill">pending: ${pending}</span><span class="state-pill state-pill-readiness">${readinessLabel()}</span></div><div class="code-card"><b>Passed phrase set</b><code>${phrases.join(' · ')}</code></div><div class="cta-row"><button class="choice primary-dark" onclick="flash('Telegram handoff: state passed → airport_01 / ${branch}')">Practice in Telegram →</button><button class="choice ghost" onclick="flash('Web = prep, Telegram = live speaking.')">Why this matters</button></div></div>`;
 }
 
-function memoryGame() {
-  const target = memoryDeck[state.memoryRound % memoryDeck.length];
-  const options = memoryOptions(state.memoryRound);
-  const answered = state.memoryAnswered;
-  const correct = state.memoryChoice === target.es;
-  return `<div class="exercise memory-challenge"><div class="exercise-topline"><span class="section-kicker">Retrieval drill</span><span class="mini-score">Раунд ${state.memoryRound + 1}/${memoryDeck.length} · счёт ${state.memoryScore}</span></div><h3>Фото → испанское слово</h3><p>Ученик видит среду, а не словарь. Поэтому тест идёт от картинки и смысла к нужному слову.</p><div class="memory-stage"><div class="memory-photo" style="--photo:${target.photo}"><span class="ru-label">${target.ru}</span><small>${target.hint}</small></div><div class="memory-options">${options.map(o => `<button type="button" class="memory-tile ${answered && o.es === target.es ? 'correct' : ''} ${answered && state.memoryChoice === o.es && o.es !== target.es ? 'wrong' : ''}" data-memory="${o.es}">${o.es}</button>`).join('')}</div></div>${answered ? `<div class="feedback ${correct ? 'good' : 'bad'}">${correct ? 'Да — это именно тот знак, который нужно быстро узнать в аэропорту.' : `Пока нет. Верный ответ: ${target.es}.`}</div><button type="button" class="choice" data-memory-next="1">Следующий раунд →</button>` : ''}<button type="button" class="choice ghost" data-memory-reset="1">Сбросить игру</button></div>`;
+function newWordsFlow() {
+  if (state.vocabStage === 'intro') {
+    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">New words</span><span class="mini-score">${vocabFlowItems.length} words for this scene</span></div><h3>Сначала — одно слово, одна картинка, один фокус</h3><p>Юзер не видит весь набор сразу. Он спокойно проходит короткую цепочку и только потом получает быстрый тест.</p><div class="word-flow-intro"><button class="choice primary-dark" onclick="startVocabFlow()">Start</button></div></div>`;
+  }
+
+  if (state.vocabStage === 'cards') {
+    const item = vocabFlowItems[state.vocabCardIndex];
+    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">New words</span><span class="mini-score">${state.vocabCardIndex + 1}/${vocabFlowItems.length}</span></div><div class="single-word-card"><div class="single-word-photo" style="--photo:${item[3]}" role="img" aria-label="${item[1]}"></div><div class="single-word-copy"><strong>${item[0]}</strong><button class="choice ghost small-choice" onclick="toggleVocabTranslation()">${state.vocabTranslationOpen ? 'Hide translation' : 'Show translation'}</button>${state.vocabTranslationOpen ? `<div class="word-translation"><em>${item[1]}</em><p>${item[2]}</p></div>` : ''}</div></div><div class="single-word-actions"><button class="choice ghost" onclick="prevVocabCard()" ${state.vocabCardIndex === 0 ? 'disabled' : ''}>Back</button><button class="choice primary-dark" onclick="nextVocabCard()">${state.vocabCardIndex === vocabFlowItems.length - 1 ? 'Finish words' : 'Next'}</button></div></div>`;
+  }
+
+  if (state.vocabStage === 'ready') {
+    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">New words complete</span><span class="mini-score">Seen all ${vocabFlowItems.length}</span></div><h3>Хорошо. Теперь короткая проверка.</h3><p>Только после просмотра всех слов запускается мини-тест: фото → выбрать слово.</p><div class="word-flow-intro"><button class="choice primary-dark" onclick="startVocabQuiz()">Start test</button><button class="choice ghost" onclick="resetVocabFlow()">Restart words</button></div></div>`;
+  }
+
+  if (state.vocabStage === 'quiz') {
+    const item = vocabFlowItems[state.vocabQuizIndex];
+    const options = vocabQuizOptions(state.vocabQuizIndex);
+    const correct = state.vocabQuizChoice === item[0];
+    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Quick check</span><span class="mini-score">${state.vocabQuizIndex + 1}/${vocabFlowItems.length}</span></div><div class="single-word-card quiz-card"><div class="single-word-photo" style="--photo:${item[3]}" role="img" aria-label="${item[1]}"></div><div class="single-word-copy"><strong>Which word matches?</strong><div class="quiz-stack">${options.map((option) => `<button class="choice quiz-choice ${state.vocabQuizAnswered && option === item[0] ? 'correct' : ''} ${state.vocabQuizAnswered && state.vocabQuizChoice === option && option !== item[0] ? 'wrong' : ''}" onclick="chooseVocabQuiz('${option.replace(/'/g, "\\'")}')">${option}</button>`).join('')}</div>${state.vocabQuizAnswered ? `<div class="feedback ${correct ? 'good' : 'bad'}">${correct ? `✅ Correct — ${item[0]}` : `Not quite. Correct answer: ${item[0]}`}</div><button class="choice primary-dark" onclick="nextVocabQuiz()">${state.vocabQuizIndex === vocabFlowItems.length - 1 ? 'Finish test' : 'Next question'}</button>` : ''}</div></div></div>`;
+  }
+
+  return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Quick check complete</span><span class="mini-score">${state.vocabQuizScore}/${vocabFlowItems.length} correct</span></div><h3>Готово — слова просмотрены и быстро проверены.</h3><p>Теперь можно идти дальше: к фразам и speaking-подготовке.</p><div class="word-flow-intro"><button class="choice primary-dark" onclick="go(3)">Continue to phrases</button><button class="choice ghost" onclick="resetVocabFlow()">Review words again</button></div></div>`;
 }
 
 function vocabQuiz() {
@@ -768,7 +979,7 @@ const quickScreens = [
   {
     nav: 'Course home',
     home: true,
-    html: () => `<span class="badge">Life Learning</span><h2 class="screen-title">Spanish for Real Life · Airport</h2><p>Продукт ведёт ученика через реальные сцены: сначала Web быстро собирает нужные слова, паттерны и confidence, потом Telegram заставляет произнести это в живой voice-ситуации.</p>${visualStrip()}<div class="hero-panel"><div class="hero-stat"><strong>7 min</strong><span>prep before voice</span></div><div class="hero-stat"><strong>5 min</strong><span>Telegram performance</span></div><div class="hero-stat"><strong>Beginner</strong><span>functional survival first</span></div></div><div class="home-grid"><div class="info-box"><b>Как устроен курс</b><p>Каждая сцена — это mission: понять, что происходит, собрать рабочие фразы и пройти голосовую проверку в контексте.</p></div><div class="info-box"><b>Можно ли прыгать по урокам?</b><p>Можно, но продукт подсветит, какой базовый survival-layer ты пропускаешь. По умолчанию лучше идти по реальным жизненным стадиям.</p></div><div class="info-box"><b>Free vs Deep Dive</b><p>Quick pass даёт выживание. Deep Dive разворачивает среду, ветки решений и дополнительные speaking-сцены.</p></div><div class="info-box"><b>Почему Telegram внутри урока</b><p>Потому что performance не должен жить отдельно. Telegram — action layer того же урока, а не другой продукт.</p></div></div><div class="selectors"><label>Язык интерфейса<select><option>Русский</option><option>English</option></select></label><label>Целевой язык<select><option>Español</option><option>Italiano · later</option></select></label></div><div class="cta-row top-gap"><button class="choice primary-dark" onclick="go(1)">Start Scene 1 → Airport arrival</button><button class="choice ghost" onclick="flash('Product frame: Web prepares, Telegram tests, wins feel real.')">See course logic</button></div>`
+    html: () => `<div class="landing-utility"><div class="selectors selectors-secondary"><label>Interface<select><option>English</option><option>Русский</option></select></label><label>Support language<select><option>Русский</option><option>English</option></select></label></div></div><span class="badge">Life Learning</span><h2 class="screen-title">Spanish for Real Life · Airport</h2><p>Learn Spanish through real airport situations.<br>Short web prep first, then live speaking in Telegram.</p>${visualStrip()}<div class="meta-row"><span class="meta-chip">Beginner</span><span class="meta-chip">7 min web prep</span><span class="meta-chip">5 min Telegram speaking</span></div><div class="cta-stack top-gap"><button class="choice primary-dark" onclick="go(1)">Start Airport Arrival</button><button class="choice ghost" onclick="scrollToHowItWorks()">How it works</button></div><section id="howItWorks" class="below-fold-stack"><div class="info-box how-it-works"><b>How it works</b><ol><li><strong>See the situation</strong><span>Start with one real airport scene.</span></li><li><strong>Collect the phrases you need</strong><span>Take only the words and patterns for that moment.</span></li><li><strong>Use them in live Telegram speaking</strong><span>Practice the scene in a short guided conversation.</span></li></ol></div><div class="home-grid below-grid"><div class="info-box"><b>Quick Pass vs Deep Dive</b><p>Quick Pass gets the learner moving fast. Deep Dive expands the same airport into stronger branches and extra speaking reps.</p></div><div class="info-box"><b>Why Telegram</b><p>Speaking practice sits inside the lesson flow, where it feels fast and natural — not like a separate product.</p></div><div class="info-box"><b>Can I skip scenes?</b><p>Yes, but the route works best in order. The first scene removes friction before the rest of the travel path.</p></div></div><div class="settings-box"><span class="section-kicker">Language settings</span><p>Language is a secondary setting, not a gate before start.</p><div class="selectors selectors-secondary low-emphasis"><label>Interface<select><option>English</option><option>Русский</option></select></label><label>Support language<select><option>Русский</option><option>English</option></select></label></div></div></section>`
   },
   {
     nav: 'Airport mission',
@@ -777,7 +988,7 @@ const quickScreens = [
   },
   {
     nav: 'Environment words',
-    html: () => `<span class="badge">Web prep · environment vocabulary</span><h2 class="screen-title">Сначала учим глазами ориентироваться в аэропорту</h2><p>Ученик должен узнавать среду быстрее, чем вспоминать перевод. Поэтому словарь здесь оформлен как sign recognition и короткие retrieval drills.</p><div class="photo-grid">${vocabCards()}</div>${memoryGame()}${vocabQuiz()}${vocabRecall()}`
+    html: () => `<span class="badge">Web prep · new words</span><h2 class="screen-title">Новые слова — по одному, без словарной стены</h2><p>В этом блоке юзер видит только одно слово с одной картинкой. Сначала просмотр, потом короткий тест — и только затем переход дальше.</p>${newWordsFlow()}`
   },
   {
     nav: 'Phrase drills',
@@ -807,11 +1018,7 @@ function screens() {
   return state.mode === 'quick' ? quickScreens : deepScreens;
 }
 
-function bindInteractive() {
-  screen.querySelectorAll('[data-memory]').forEach(btn => btn.addEventListener('click', () => chooseMemory(btn.dataset.memory)));
-  screen.querySelectorAll('[data-memory-next]').forEach(btn => btn.addEventListener('click', nextMemory));
-  screen.querySelectorAll('[data-memory-reset]').forEach(btn => btn.addEventListener('click', resetMemory));
-}
+function bindInteractive() {}
 
 function render() {
   const data = screens();
@@ -823,8 +1030,8 @@ function render() {
   steps.innerHTML = data.map((s, i) => `<button class="step ${i === state.index ? 'active' : ''}" onclick="go(${i})"><span>${String(i + 1).padStart(2, '0')}</span>${s.nav}</button>`).join('');
   quickBtn.classList.toggle('active', state.mode === 'quick');
   deepBtn.classList.toggle('active', state.mode === 'deep');
-  eyebrow.textContent = current.home ? 'Course entry · choose your path' : (state.mode === 'quick' ? 'Scene 1 · Airport arrival' : 'Deep Dive · Airport branches');
-  heroTitle.textContent = current.home ? 'Life Learning' : (state.mode === 'quick' ? 'Подготовься на Web. Справься в Telegram.' : 'Освой аэропорт глубже, по реальным веткам.');
+  eyebrow.textContent = current.home ? 'Course entry · start the first scene' : (state.mode === 'quick' ? 'Scene 1 · Airport arrival' : 'Deep Dive · Airport branches');
+  heroTitle.textContent = current.home ? 'Start with one real airport situation' : (state.mode === 'quick' ? 'Подготовься на Web. Справься в Telegram.' : 'Освой аэропорт глубже, по реальным веткам.');
   heroCopy.textContent = current.home ? 'Spanish for Real Life · Airport prototype.' : (state.mode === 'quick' ? 'Web explicitly handles prep and confidence; Telegram handles live speaking performance.' : 'Choose a stronger branch and pass the exact scene state into Telegram.');
   progressMeta.textContent = `${state.mode === 'quick' ? 'Quick Pass' : 'Deep Dive'} · Step ${state.index + 1}/${data.length}`;
 }
@@ -834,7 +1041,7 @@ document.getElementById('prev').onclick = () => { state.index = Math.max(state.i
 quickBtn.onclick = setQuick;
 deepBtn.onclick = setDeep;
 
-Object.assign(window, { go, setDeep, setQuick, setBranch, chooseMemory, nextMemory, resetMemory, chooseQuiz, addWord, clearPhrase, checkPhrase, chooseRescue, toggleVoice, checkVoice, resetVoice, flash, toggleHints });
+Object.assign(window, { go, setDeep, setQuick, setBranch, startVocabFlow, nextVocabCard, prevVocabCard, startVocabQuiz, chooseVocabQuiz, nextVocabQuiz, resetVocabFlow, toggleVocabTranslation, chooseQuiz, addWord, clearPhrase, checkPhrase, chooseRescue, toggleVoice, checkVoice, resetVoice, flash, toggleHints, scrollToHowItWorks });
 
 render();
 
