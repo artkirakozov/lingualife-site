@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Life Learning — Spanish for Real Life · Airport Prototype</title>
+  <title>Life Learning — Испанский для реальной жизни</title>
   <style>
 :root {
   --bg: radial-gradient(circle at top, #fff9ef 0%, #f5efe4 46%, #eee6da 100%);
@@ -687,9 +687,9 @@ p { color: var(--muted); font-size: 18px; line-height: 1.58; }
     <aside class="sidebar">
       <div class="brand-wrap">
         <div class="brand">Life Learning</div>
-        <div class="subtitle">Spanish for Real Life · Airport prototype</div>
+        <div class="subtitle">Испанский для реальной жизни</div>
       </div>
-      <div class="progress-meta" id="progressMeta">Quick Pass · Step 1/7</div>
+      <div class="progress-meta" id="progressMeta">Шаг 1/7</div>
       <nav id="steps"></nav>
     </aside>
 
@@ -698,10 +698,10 @@ p { color: var(--muted); font-size: 18px; line-height: 1.58; }
         <div>
           <div class="eyebrow" id="eyebrow">Course entry · choose your path</div>
           <h1 id="heroTitle">Life Learning</h1>
-          <p id="heroCopy">Spanish for Real Life · Airport prototype.</p>
+          <p id="heroCopy">Испанский для реальной жизни.</p>
         </div>
         <div class="mode-card">
-          <div class="label">Layer</div>
+          
           <button id="quickMode" class="mode active">Quick pass</button>
           <button id="deepMode" class="mode">Deep dive</button>
         </div>
@@ -731,7 +731,7 @@ const phraseItems = [
   ['Tengo un problema con mi equipaje.', 'У меня проблема с багажом.', 'Паттерн для любой проблемы: Tengo un problema con...'],
   ['¿Qué tengo que hacer ahora?', 'Что мне делать сейчас?', 'Помогает перевести разговор к следующему действию.'],
   ['¿Puede repetir, por favor?', 'Повторите, пожалуйста.', 'Фраза восстановления, когда речь слишком быстрая.'],
-  ['Más despacio, por favor.', 'Помедленнее, пожалуйста.', 'Ещё один безопасный recovery move.'],
+  ['Más despacio, por favor.', 'Помедленнее, пожалуйста.', 'Ещё один безопасный полезная фраза.'],
   ['Entonces, ¿tengo que ir allí?', 'То есть мне нужно идти туда?', 'Проверка понимания перед действием.']
 ];
 
@@ -802,7 +802,7 @@ const borderTurns = [
     prompt: 'Нужен простой ответ про срок.',
     correct: 'Me quedo tres días.',
     options: ['Me quedo tres días.', '¿Puede repetir, por favor?', 'Voy a la salida.'],
-    feedback: 'Да: это именно survival-ответ, который снимает напряжение.'
+    feedback: 'Да: это именно ответ, который снимает напряжение.'
   },
   {
     bot: '¿Dónde se aloja?',
@@ -863,7 +863,7 @@ const branchData = {
       'Entonces, ¿voy por aquí al metro?'
     ],
     tasks: [
-      'Recognition: выбрать правильный знак для bus / train / metro.',
+      'Recognition: выбрать правильный знак для автобус / поезд / метро.',
       'Decision: дешево и просто → bus; быстро и без пересадок → taxi; баланс → train.',
       'Speaking: спросить цену и подтвердить, где именно остановка.'
     ],
@@ -1392,7 +1392,7 @@ function helpFlow() {
   return turnByTurnFlow({
     stage: state.helpStage,
     introTitle: 'Главная airport help сцена — тоже по одному ходу',
-    introText: 'Здесь learner сначала просит помощь, потом использует recovery move, затем подтверждает маршрут и только потом закрывает разговор.',
+    introText: 'Здесь learner сначала просит помощь, потом использует полезная фраза, затем подтверждает маршрут и только потом закрывает разговор.',
     startAction: 'startHelpFlow',
     resetAction: 'resetHelpFlow',
     turns: helpTurns,
@@ -1415,7 +1415,7 @@ function telegramThread(title, intro, chips, dialogue, summary) {
 }
 
 function deepHub() {
-  return `<span class="badge">Deep Dive · Airport</span><h2 class="screen-title">Углубить аэропорт как реальную среду</h2><p>Quick pass дал survival win. Deep Dive добавляет решения, ветки и speaking-сцены, чтобы аэропорт ощущался как реальное место, а не как тема из учебника.</p><div class="branch-grid">${Object.entries(branchData).map(([key, branch]) => `<button class="branch-card ${state.branch === key ? 'active' : ''}" onclick="setBranch('${key}')"><span class="mini-tag">${branch.badge}</span><strong>${branch.label}</strong><p>${branch.goal}</p><div class="branch-meta"><span>Web prep</span><span>Telegram branch</span></div></button>`).join('')}</div><div class="grid compact-grid"><div class="info-box dark"><b>Web = prep</b><p>Слова среды, decision drills, controlled voice check, practical tips.</p></div><div class="info-box dark"><b>Telegram = performance</b><p>Короткий branch-specific диалог, где надо ответить голосом и восстановиться под давлением.</p></div></div>`;
+  return `<span class="badge">Больше практики · Airport</span><h2 class="screen-title">Углубить аэропорт как реальную среду</h2><p>Quick pass дал survival win. Больше практики добавляет решения, ветки и speaking-сцены, чтобы аэропорт ощущался как реальное место, а не как тема из учебника.</p><div class="branch-grid">${Object.entries(branchData).map(([key, branch]) => `<button class="branch-card ${state.branch === key ? 'active' : ''}" onclick="setBranch('${key}')"><span class="mini-tag">${branch.badge}</span><strong>${branch.label}</strong><p>${branch.goal}</p><div class="branch-meta"><span>Web prep</span><span>Telegram branch</span></div></button>`).join('')}</div><div class="grid compact-grid"><div class="info-box dark"><b>Web = prep</b><p>Слова среды, decision drills, controlled voice check, practical tips.</p></div><div class="info-box dark"><b>Telegram = performance</b><p>Короткий branch-specific диалог, где надо ответить голосом и восстановиться под давлением.</p></div></div>`;
 }
 
 function deepBranch() {
@@ -1432,7 +1432,7 @@ const quickScreens = [
   {
     nav: 'Course home',
     home: true,
-    html: () => `<div class="landing-utility"><div class="selectors selectors-secondary"><label>Interface<select><option>English</option><option>Русский</option></select></label><label>Support language<select><option>Русский</option><option>English</option></select></label></div></div><span class="badge">Life Learning</span><h2 class="screen-title">Spanish for Real Life · Airport</h2><p>Learn Spanish through real airport situations.<br>Short web prep first, then live speaking in Telegram.</p>${visualStrip()}<div class="meta-row"><span class="meta-chip">Beginner</span><span class="meta-chip">7 min web prep</span><span class="meta-chip">5 min Telegram speaking</span></div><div class="cta-stack top-gap"><button class="choice primary-dark" onclick="go(1)">Start Airport Arrival</button><button class="choice ghost" onclick="scrollToHowItWorks()">How it works</button></div><section id="howItWorks" class="below-fold-stack"><div class="info-box how-it-works"><b>How it works</b><ol><li><strong>See the situation</strong><span>Start with one real airport scene.</span></li><li><strong>Collect the phrases you need</strong><span>Take only the words and patterns for that moment.</span></li><li><strong>Use them in live Telegram speaking</strong><span>Practice the scene in a short guided conversation.</span></li></ol></div><div class="home-grid below-grid"><div class="info-box"><b>Quick Pass vs Deep Dive</b><p>Quick Pass gets the learner moving fast. Deep Dive expands the same airport into stronger branches and extra speaking reps.</p></div><div class="info-box"><b>Why Telegram</b><p>Speaking practice sits inside the lesson flow, where it feels fast and natural — not like a separate product.</p></div><div class="info-box"><b>Can I skip scenes?</b><p>Yes, but the route works best in order. The first scene removes friction before the rest of the travel path.</p></div></div><div class="settings-box"><span class="section-kicker">Language settings</span><p>Language is a secondary setting, not a gate before start.</p><div class="selectors selectors-secondary low-emphasis"><label>Interface<select><option>English</option><option>Русский</option></select></label><label>Support language<select><option>Русский</option><option>English</option></select></label></div></div></section>`
+    html: () => `<div class="landing-utility"><div class="selectors selectors-secondary"><label>Родной язык<select><option>English</option><option>Русский</option></select></label><label>Язык обучения<select><option>Русский</option><option>English</option></select></label></div></div><span class="badge">Life Learning</span><h2 class="screen-title">Испанский для реальной жизни</h2><p>Learn Spanish through real airport situations.<br>Short web prep first, then live speaking in Telegram.</p>${visualStrip()}<div class="meta-row"><span class="meta-chip">Beginner</span><span class="meta-chip">7 min web prep</span><span class="meta-chip">5 min Telegram speaking</span></div><div class="cta-stack top-gap"><button class="choice primary-dark" onclick="go(1)">Начать аэропорт</button><button class="choice ghost" onclick="scrollToHowItWorks()">Как это работает</button></div><section id="howItWorks" class="below-fold-stack"><div class="info-box how-it-works"><b>Как это работает</b><ol><li><strong>See the situation</strong><span>Start with one real airport scene.</span></li><li><strong>Collect the phrases you need</strong><span>Take only the words and patterns for that moment.</span></li><li><strong>Use them in live Telegram speaking</strong><span>Practice the scene in a short guided conversation.</span></li></ol></div><div class="home-grid below-grid"><div class="info-box"><b>Базовый маршрут и практика</b><p>Базовый маршрут помогает быстро войти в ситуацию. Практика даёт ещё одну жизненную сцену и дополнительные повторы.</p></div><div class="info-box"><b>Почему Telegram</b><p>Разговорная практика встроена прямо в урок, поэтому всё ощущается как один цельный процесс.</p></div><div class="info-box"><b>Можно ли пропускать сцены?</b><p>Да, но лучше идти по порядку: первая сцена снимает лишнее напряжение перед остальным маршрутом.</p></div></div><div class="settings-box"><span class="section-kicker">Настройки языка</span><p>Язык — это вспомогательная настройка, а не барьер перед стартом.</p><div class="selectors selectors-secondary low-emphasis"><label>Родной язык<select><option>English</option><option>Русский</option></select></label><label>Язык обучения<select><option>Русский</option><option>English</option></select></label></div></div></section>`
   },
   {
     nav: 'Airport mission',
@@ -1457,12 +1457,12 @@ const quickScreens = [
   },
   {
     nav: 'Completion',
-    html: () => `<span class="badge">Scene complete</span><h2 class="screen-title screen-title-tight">Airport complete: первый реальный win</h2><p class="intro-copy-tight">Теперь финальный экран больше про ощущение прогресса и следующий шаг, а не про сухой отчёт.</p><div class="completion-grid"><div class="summary-card completion-summary"><b>Что уже забираешь с собой</b><div class="completion-sections"><div><span class="mini-tag">Can do now</span><ul><li>попросить помощь коротко и вежливо</li><li>сказать, что не знаешь, куда идти</li><li>перехватить разговор через recovery phrase</li><li>подтвердить маршрут и закрыть диалог</li></ul></div><div><span class="mini-tag">Base patterns</span><ul><li><b>quiero</b> — помощь или действие</li><li><b>voy / va / van</b> — движение и маршрут</li><li><b>tengo / tiene / tienen</b> — проблема, бронь или багаж</li></ul></div></div></div><div class="summary-card readiness-card success-card"><b>Mission markers</b><div class="readiness-number">${readinessScore()}/5</div><p>${readinessLabel()}</p><small>Даже если не все маркеры собраны, learner уже прошёл end-to-end сцену и может повторить только слабое место.</small></div></div><div class="cta-row completion-cta-row top-gap"><button class="choice primary-dark" onclick="setDeep()">Open Deep Dive hub</button><button class="choice ghost quiet-link" onclick="flash('Next life scene could be city transfer / taxi.')">Continue to next life scene</button></div>`
+    html: () => `<span class="badge">Scene complete</span><h2 class="screen-title screen-title-tight">Airport complete: первый реальный win</h2><p class="intro-copy-tight">Теперь финальный экран больше про ощущение прогресса и следующий шаг, а не про сухой отчёт.</p><div class="completion-grid"><div class="summary-card completion-summary"><b>Что уже забираешь с собой</b><div class="completion-sections"><div><span class="mini-tag">Can do now</span><ul><li>попросить помощь коротко и вежливо</li><li>сказать, что не знаешь, куда идти</li><li>перехватить разговор через recovery phrase</li><li>подтвердить маршрут и закрыть диалог</li></ul></div><div><span class="mini-tag">Base patterns</span><ul><li><b>quiero</b> — помощь или действие</li><li><b>voy / va / van</b> — движение и маршрут</li><li><b>tengo / tiene / tienen</b> — проблема, бронь или багаж</li></ul></div></div></div><div class="summary-card readiness-card success-card"><b>Mission markers</b><div class="readiness-number">${readinessScore()}/5</div><p>${readinessLabel()}</p><small>Даже если не все маркеры собраны, learner уже прошёл end-to-end сцену и может повторить только слабое место.</small></div></div><div class="cta-row completion-cta-row top-gap"><button class="choice primary-dark" onclick="setDeep()">Open Больше практики hub</button><button class="choice ghost quiet-link" onclick="flash('Next life scene could be city transfer / taxi.')">Continue to next life scene</button></div>`
   }
 ];
 
 const deepScreens = [
-  { nav: 'Deep Dive hub', html: () => deepHub() },
+  { nav: 'Больше практики hub', html: () => deepHub() },
   { nav: 'Branch prep', html: () => deepBranch() },
   { nav: 'Telegram branch', html: () => deepTelegram() }
 ];
@@ -1483,10 +1483,10 @@ function render() {
   steps.innerHTML = data.map((s, i) => `<button class="step ${i === state.index ? 'active' : ''}" onclick="go(${i})"><span>${String(i + 1).padStart(2, '0')}</span>${s.nav}</button>`).join('');
   quickBtn.classList.toggle('active', state.mode === 'quick');
   deepBtn.classList.toggle('active', state.mode === 'deep');
-  eyebrow.textContent = current.home ? 'Course entry · start the first scene' : (state.mode === 'quick' ? 'Scene 1 · Airport arrival' : 'Deep Dive · Airport branches');
+  eyebrow.textContent = current.home ? 'Course entry · start the first scene' : (state.mode === 'quick' ? 'Scene 1 · Airport arrival' : 'Больше практики · Airport branches');
   heroTitle.textContent = current.home ? 'Start with one real airport situation' : (state.mode === 'quick' ? 'Подготовься на Web. Справься в Telegram.' : 'Освой аэропорт глубже, по реальным веткам.');
-  heroCopy.textContent = current.home ? 'Spanish for Real Life · Airport prototype.' : (state.mode === 'quick' ? 'Web explicitly handles prep and confidence; Telegram handles live speaking performance.' : 'Choose a stronger branch and pass the exact scene state into Telegram.');
-  progressMeta.textContent = `${state.mode === 'quick' ? 'Quick Pass' : 'Deep Dive'} · Step ${state.index + 1}/${data.length}`;
+  heroCopy.textContent = current.home ? 'Испанский для реальной жизни.' : (state.mode === 'quick' ? 'Сначала короткая подготовка на экране, потом живая разговорная практика в Telegram.' : 'Выберите нужную ситуацию и перейдите к разговорной практике без лишних шагов.');
+  progressMeta.textContent = `${state.mode === 'quick' ? 'Базовый маршрут' : 'Больше практики'} · Step ${state.index + 1}/${data.length}`;
 }
 
 document.getElementById('next').onclick = () => { state.index = Math.min(state.index + 1, screens().length - 1); render(); };
