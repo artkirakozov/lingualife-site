@@ -83,6 +83,9 @@ button, select { font: inherit; }
   font-size: 13px;
   font-weight: 900;
 }
+.step b, .step small { display:block; }
+.step b { font-size: 14px; }
+.step small { margin-top: 3px; font-size: 11px; color: inherit; opacity: .78; font-weight: 800; }
 .step:hover { background: rgba(255,255,255,.65); color: var(--ink); }
 .step.active { background: var(--ink); color: white; box-shadow: var(--shadow-soft); }
 .step.active span { background: rgba(255,255,255,.14); color: white; }
@@ -188,6 +191,32 @@ h1 {
   margin: 12px 0 10px;
 }
 p { color: var(--muted); font-size: 18px; line-height: 1.58; }
+.hero-progress { margin-top: 18px; }
+.progress-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.progress-pill {
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.8);
+  color: var(--muted);
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.progress-pill.done {
+  background: rgba(13,141,92,.08);
+  color: var(--green);
+  border-color: rgba(13,141,92,.18);
+}
+.progress-pill.active {
+  background: var(--ink);
+  color: white;
+  border-color: transparent;
+}
 .mode-card, .content-card {
   background: var(--card);
   border: 1px solid var(--line);
@@ -289,8 +318,41 @@ p { color: var(--muted); font-size: 18px; line-height: 1.58; }
   background: rgba(255,255,255,.56);
 }
 .settings-box p { font-size: 15px; margin: 8px 0 0; }
+.promise-card, .pressure-card, .scenario-coach, .recall-gate {
+  margin-top: 18px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: rgba(255,255,255,.82);
+  box-shadow: var(--shadow-soft);
+}
+.promise-list {
+  margin: 12px 0 0;
+  padding-left: 20px;
+  display: grid;
+  gap: 8px;
+}
+.promise-list li, .pressure-card li, .scenario-coach li { color: var(--ink); }
+.pressure-card ul, .scenario-coach ul {
+  margin: 10px 0 0;
+  padding-left: 20px;
+  display: grid;
+  gap: 8px;
+}
+.pressure-inline {
+  margin: 12px 0 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(255,107,53,.1);
+  color: var(--accent-dark);
+  font-size: 13px;
+  font-weight: 800;
+}
 .word, .phrase, .message, .info-box, .exercise, .pattern-box, .drill-card, .word-panel, .branch-card, .summary-card {
-  padding: 16px;
+  padding: 18px;
   border: 1px solid var(--line);
   border-radius: 22px;
   background: var(--card-strong);
@@ -449,9 +511,19 @@ p { color: var(--muted); font-size: 18px; line-height: 1.58; }
 .word-tile.with-hint small { color:var(--muted); font-weight:700; line-height:1.3; }
 .recall-mode { color: var(--accent-dark) !important; font-weight: 800; }
 .selected { outline: 3px solid rgba(31,111,235,.26); }
-.correct, .good { background: #dcfce7 !important; border-color: #22c55e !important; color: #14532d; }
-.wrong, .bad { background: #fee2e2 !important; border-color: #ef4444 !important; color: #7f1d1d; }
-.feedback { margin-top: 12px; padding: 12px 14px; border-radius: 14px; font-weight: 800; }
+.correct, .good {
+  background: linear-gradient(180deg, #ecfdf3, #dcfce7) !important;
+  border-color: #22c55e !important;
+  color: #14532d;
+  box-shadow: inset 0 0 0 1px rgba(34,197,94,.15);
+}
+.wrong, .bad {
+  background: linear-gradient(180deg, #fff3f3, #fee2e2) !important;
+  border-color: #ef4444 !important;
+  color: #7f1d1d;
+  box-shadow: inset 0 0 0 1px rgba(239,68,68,.12);
+}
+.feedback { margin-top: 12px; padding: 12px 14px; border-radius: 14px; font-weight: 800; line-height: 1.45; }
 .drill-stack { display:grid; gap:14px; margin-top:20px; }
 .tile-row {
   display: flex;
@@ -577,6 +649,29 @@ p { color: var(--muted); font-size: 18px; line-height: 1.58; }
 .voice-button.recording { background:#dc2626; animation:pulse 1s infinite; }
 .voice-button.done { background:#16a34a; }
 @keyframes pulse { 50% { opacity: .4; } }
+.scenario-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+.scenario-card {
+  text-align: left;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: rgba(255,255,255,.82);
+  padding: 16px;
+  cursor: pointer;
+  transition: .18s ease;
+}
+.scenario-card strong,
+.scenario-card span { display: block; }
+.scenario-card strong { font-size: 16px; margin-bottom: 8px; }
+.scenario-card span { color: var(--muted); line-height: 1.45; }
+.scenario-card.active {
+  border-color: rgba(255,107,53,.3);
+  box-shadow: 0 0 0 3px rgba(255,107,53,.12), var(--shadow-soft);
+}
 .ai-feedback {
   margin-top:14px;
   padding:16px;
@@ -622,8 +717,31 @@ p { color: var(--muted); font-size: 18px; line-height: 1.58; }
 .ghost { background: rgba(255,255,255,.7); }
 .top-gap { margin-top: 20px; }
 .hint-bar { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-top:18px; }
-.controls { margin-top: 18px; display: flex; justify-content: space-between; gap: 12px; }
+.controls {
+  margin-top: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.controls-copy {
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 800;
+}
+.controls-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
 .controls button { font-size: 16px; }
+.controls button:disabled {
+  opacity: .45;
+  cursor: default;
+  transform: none;
+  box-shadow: none;
+}
 .summary-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
 .readiness-card { display:grid; align-content:start; gap:10px; }
 .readiness-number { font-size: 52px; line-height: 1; letter-spacing: -.06em; font-weight: 900; }
@@ -666,18 +784,27 @@ p { color: var(--muted); font-size: 18px; line-height: 1.58; }
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 @media (max-width: 980px) {
   .app { grid-template-columns: 1fr; }
-  .sidebar { position: relative; height: auto; }
+  .sidebar { position: relative; height: auto; padding-bottom: 16px; }
   .hero, .three-col, .completion-grid { grid-template-columns: 1fr; }
   .visual-strip, .route-strip, .single-word-card { grid-template-columns: 1fr; }
   .main { padding: 18px; }
+  .controls { flex-direction: column; align-items: stretch; }
+  .controls-actions { justify-content: stretch; }
+  .controls-actions > * { flex: 1 1 220px; }
 }
 @media (max-width: 720px) {
   .memory-stage, .hero-panel { grid-template-columns: 1fr; display:grid; }
-  .content-card { padding: 22px; }
+  .content-card { padding: 20px 16px; min-height: auto; border-radius: 24px; }
   h1 { font-size: 42px; }
-  .single-word-photo { min-height: 240px; }
-  .single-word-actions, .word-flow-intro { flex-direction: column; }
-  .cta-stack { width: 100%; }
+  p { font-size: 16px; }
+  .screen-title { font-size: 30px; }
+  .single-word-photo { min-height: 220px; }
+  .single-word-actions, .word-flow-intro, .controls-actions { flex-direction: column; }
+  .quiz-stack, .cta-stack { width: 100%; }
+  .mode-card { padding: 14px; }
+  .step { padding: 11px 10px; }
+  .progress-pills { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; }
+  .progress-pill { white-space: nowrap; }
 }
 
 </style>
@@ -696,22 +823,25 @@ p { color: var(--muted); font-size: 18px; line-height: 1.58; }
     <main class="main">
       <section class="hero">
         <div>
-          <div class="eyebrow" id="eyebrow">Course entry · choose your path</div>
-          <h1 id="heroTitle">Life Learning</h1>
-          <p id="heroCopy">Испанский для реальной жизни.</p>
+          <div class="eyebrow" id="eyebrow">Аэропорт</div>
+          <h1 id="heroTitle">Испанский для реальной ситуации</h1>
+          <p id="heroCopy">Нужные слова, фразы и короткие диалоги.</p>
+          <div class="hero-progress" id="heroProgress"></div>
         </div>
         <div class="mode-card">
-          
-          <button id="quickMode" class="mode active">Quick pass</button>
-          <button id="deepMode" class="mode">Deep dive</button>
+          <button id="quickMode" class="mode active">Основной маршрут</button>
+          <button id="deepMode" class="mode">Отдельные ситуации</button>
         </div>
       </section>
 
       <section class="content-card" id="screen"></section>
 
       <section class="controls">
-        <button id="prev">← Назад</button>
-        <button id="next" class="primary">Дальше →</button>
+        <div class="controls-copy" id="controlsCopy">Шаг 1 из 7</div>
+        <div class="controls-actions">
+          <button id="prev">← Назад</button>
+          <button id="next" class="primary">Следующий шаг →</button>
+        </div>
       </section>
     </main>
   </div>
@@ -731,21 +861,26 @@ const phraseItems = [
   ['Tengo un problema con mi equipaje.', 'У меня проблема с багажом.', 'Паттерн для любой проблемы: Tengo un problema con...'],
   ['¿Qué tengo que hacer ahora?', 'Что мне делать сейчас?', 'Помогает перевести разговор к следующему действию.'],
   ['¿Puede repetir, por favor?', 'Повторите, пожалуйста.', 'Фраза восстановления, когда речь слишком быстрая.'],
-  ['Más despacio, por favor.', 'Помедленнее, пожалуйста.', 'Ещё один безопасный полезная фраза.'],
+  ['Más despacio, por favor.', 'Помедленнее, пожалуйста.', 'Ещё одна безопасная фраза, чтобы вернуть разговор под контроль.'],
   ['Entonces, ¿tengo que ir allí?', 'То есть мне нужно идти туда?', 'Проверка понимания перед действием.']
 ];
 
 const vocabFlowItems = [
-  ['llegadas', 'прилёты', 'Зона, куда ты попадаешь сразу после рейса.', photoLibrary.arrivals],
-  ['aseos / baño', 'туалет', 'Один из самых полезных знаков, когда нужно быстро сориентироваться.', photoLibrary.signs],
-  ['control de pasaportes', 'паспортный контроль', 'Первая обязательная точка, где нужно понять вопрос и спокойно ответить.', photoLibrary.security]
+  ['llegadas', 'прилёты', 'Куда идти сразу после самолёта.', photoLibrary.arrivals],
+  ['salida', 'выход', 'Главный знак, когда нужно выбраться из зоны прилёта.', photoLibrary.signs],
+  ['control de pasaportes', 'паспортный контроль', 'Точка, где задают короткие вопросы по прилёту.', photoLibrary.security],
+  ['información', 'информация', 'Стойка, где можно попросить помощь.', photoLibrary.arrivals],
+  ['equipaje', 'багаж', 'Полезное слово, если чемодан потерялся или задержался.', photoLibrary.baggage],
+  ['aseos / baño', 'туалет', 'Один из самых частых знаков в аэропорту.', photoLibrary.signs],
+  ['taxi', 'такси', 'Когда нужно быстро уехать из аэропорта.', photoLibrary.arrivals],
+  ['metro', 'метро', 'Частый способ добраться в город.', photoLibrary.signs]
 ];
 
 const basePatternItems = [
   {
-    kicker: 'Base pattern 1',
-    title: 'Хочу / хочет / хотят',
-    note: 'Это база для аэропортовых просьб и желаний: хочу помощь, хочу пройти, хочу уточнить.',
+    kicker: 'Шаг 5',
+    title: 'Скажи, что хочешь помощь',
+    note: 'Не отдельная грамматика, а готовый рабочий ход для ситуации, когда тебе реально нужна помощь.',
     stem: 'querer',
     forms: [
       ['Yo', 'quiero', 'ayuda.'],
@@ -758,9 +893,9 @@ const basePatternItems = [
     sample: 'Yo quiero ayuda. / Él quiere ayuda. / Ellos quieren ayuda.'
   },
   {
-    kicker: 'Base pattern 2',
-    title: 'Иду / идёт / идут',
-    note: 'Нужен, когда ученик объясняет маршрут или подтверждает, куда идёт.',
+    kicker: 'Шаг 6',
+    title: 'Скажи, что идёшь к выходу',
+    note: 'Эта форма нужна не сама по себе, а чтобы подтверждать маршрут и действие.',
     stem: 'ir',
     forms: [
       ['Yo', 'voy', 'a la salida.'],
@@ -773,9 +908,9 @@ const basePatternItems = [
     sample: 'Yo voy a la salida. / Él va a la salida. / Ellos van a la salida.'
   },
   {
-    kicker: 'Base pattern 3',
-    title: 'У меня есть / у него есть / у них есть',
-    note: 'Это несущая конструкция для проблем и объектов: у меня проблема, у меня бронь, у меня багаж.',
+    kicker: 'Шаг 7',
+    title: 'Скажи, что у тебя проблема с багажом',
+    note: 'Через эту конструкцию ты называешь проблему так, чтобы разговор сразу сдвинулся дальше.',
     stem: 'tener',
     forms: [
       ['Yo', 'tengo', 'un problema.'],
@@ -786,6 +921,27 @@ const basePatternItems = [
     options: ['tengo', 'tiene', 'tienen'],
     answer: 'tienen',
     sample: 'Yo tengo un problema. / Él tiene un problema. / Ellos tienen un problema.'
+  }
+];
+
+const voiceScenarios = [
+  {
+    title: 'Потерялся после прилёта',
+    prompt: 'Скажи это так, как сказал бы у стойки информации: коротко, вежливо и без длинного вступления.',
+    target: '¿Me puede ayudar? No sé adónde tengo que ir.',
+    coaching: ['Сначала просьба о помощи.', 'Потом коротко назови проблему.', 'Не уходи в объяснения про весь маршрут.']
+  },
+  {
+    title: 'Маршрут объяснили слишком быстро',
+    prompt: 'Твоя задача не угадать, а остановить темп и вернуть разговор в удобный ритм.',
+    target: '¿Puede repetir, por favor? Más despacio, por favor.',
+    coaching: ['Сначала попроси повторить.', 'Потом замедли темп разговора.', 'Главная цель — вернуть себе управление сценой.']
+  },
+  {
+    title: 'Чемодан не приехал',
+    prompt: 'Назови проблему спокойно и сразу переведи разговор к следующему шагу.',
+    target: 'Tengo un problema con mi equipaje. ¿Qué tengo que hacer ahora?',
+    coaching: ['Сначала назови проблему.', 'Потом спроси, что делать дальше.', 'Думай не про идеальность, а про полезность ответа.']
   }
 ];
 
@@ -802,14 +958,14 @@ const borderTurns = [
     prompt: 'Нужен простой ответ про срок.',
     correct: 'Me quedo tres días.',
     options: ['Me quedo tres días.', '¿Puede repetir, por favor?', 'Voy a la salida.'],
-    feedback: 'Да: это именно ответ, который снимает напряжение.'
+    feedback: 'Да: это короткий рабочий ответ, который снимает напряжение.'
   },
   {
     bot: '¿Dónde se aloja?',
     prompt: 'Закрой третий вопрос так, чтобы сцена двинулась дальше.',
     correct: 'Me alojo en un hotel.',
     options: ['Me alojo en un hotel.', 'Quiero ayuda.', 'Más despacio, por favor.'],
-    feedback: 'Готово: три обязательных ответа собраны, warm-up пройден.'
+    feedback: 'Готово: три обязательных ответа собраны, разминка пройдена.'
   }
 ];
 
@@ -819,40 +975,52 @@ const helpTurns = [
     prompt: 'Как лучше открыть разговор?',
     correct: '¿Me puede ayudar? No sé adónde tengo que ir.',
     options: ['¿Me puede ayudar? No sé adónde tengo que ir.', 'Vengo por turismo.', 'Tengo tres días.'],
-    feedback: 'Сильное открытие: просьба + проблема в одном коротком ходе.'
+    feedback: 'Сильное открытие: просьба + проблема в одном коротком ходе.',
+    pressure: 'Ответ нужен сразу: в живой сцене тут нет длинной паузы.'
   },
   {
     bot: 'Tiene que ir al final del pasillo y girar a la derecha.',
     prompt: 'Речь слишком быстрая. Как не потеряться?',
     correct: '¿Puede repetir, por favor?',
     options: ['¿Puede repetir, por favor?', 'No, gracias.', 'Tengo un problema con mi equipaje.'],
-    feedback: 'Да: сначала не угадывать, а управлять разговором через recovery phrase.'
+    feedback: 'Да: сначала не угадывать, а управлять разговором через фразу для переспроса.',
+    pressure: 'Первое давление: тебе сказали маршрут слишком быстро.'
   },
   {
-    bot: 'Sí, a la derecha. Después sigue recto.',
-    prompt: 'Как проверить, что маршрут понят правильно?',
+    bot: 'Sí. Va al hall principal y después sigue recto.',
+    prompt: 'Ты понял «a la derecha», но споткнулся о незнакомое hall principal. Что лучше сделать?',
+    correct: 'Perdón, no entiendo “hall principal”.',
+    options: ['Perdón, no entiendo “hall principal”.', 'No, gracias.', 'Tengo tres días.'],
+    feedback: 'Отлично: ты не притворяешься, что понял всё, а локально чинишь разговор.',
+    pressure: 'Второе давление: в инструкции всплыло незнакомое слово.'
+  },
+  {
+    bot: 'Es la zona central. Primero a la derecha y luego recto.',
+    prompt: 'Теперь маршрут понятнее. Как проверить, что ты понял правильно?',
     correct: 'Vale, primero a la derecha y después sigo recto, ¿no?',
     options: ['Vale, primero a la derecha y después sigo recto, ¿no?', 'Quiero ayuda.', '¿Turismo o trabajo?'],
-    feedback: 'Отлично: learner не просто слушает, а подтверждает маршрут своими словами.'
+    feedback: 'Отлично: ты подтверждаешь маршрут своими словами.',
+    pressure: 'Теперь не просто понять, а собрать маршрут обратно в своей речи.'
   },
   {
-    bot: 'Exacto. ¿Necesita algo más?',
-    prompt: 'Как мягко закрыть разговор?',
-    correct: 'No, gracias.',
-    options: ['No, gracias.', 'Ellos tienen un problema.', '¿Dónde se aloja?'],
-    feedback: 'Хороший финал: коротко, вежливо, без лишнего стресса.'
+    bot: 'Exacto. ¿Va al metro o al taxi?',
+    prompt: 'Неожиданный follow-up: как коротко ответить и закрыть сцену?',
+    correct: 'Voy al metro. Gracias.',
+    options: ['Voy al metro. Gracias.', 'No sé adónde tengo que ir.', 'Tengo un problema con mi equipaje.'],
+    feedback: 'Да: это короткий живой финал с действием и вежливым закрытием.',
+    pressure: 'Третье давление: тебе задали дополнительный вопрос вместо прощания.'
   }
 ];
 
 const branchData = {
   transfer: {
-    label: 'Getting to the city',
+    label: 'В город',
     nav: 'В город',
-    badge: 'Deep dive · branch 1',
+    badge: 'Ситуация',
     title: 'Из аэропорта в город без хаоса',
-    intro: 'Эта ветка учит выбрать маршрут, спросить цену и подтвердить нужную остановку. Сначала Web готовит лексику и решение, потом Telegram проверяет это под давлением.',
+    intro: 'Здесь ты учишься выбрать маршрут, спросить цену и подтвердить нужную остановку.',
     goal: 'Выбрать транспорт и задать 2–3 практичных вопроса.',
-    tip: 'В реальной жизни ученик чаще сравнивает скорость, цену и точку остановки — не “учит транспорт вообще”.',
+    tip: 'Сфокусируйся на цене, скорости и нужной остановке.',
     words: [
       ['tren', 'поезд'], ['autobús exprés', 'экспресс-автобус'], ['metro', 'метро'], ['billete', 'билет'], ['parada', 'остановка'], ['cuánto cuesta', 'сколько стоит']
     ],
@@ -863,9 +1031,9 @@ const branchData = {
       'Entonces, ¿voy por aquí al metro?'
     ],
     tasks: [
-      'Recognition: выбрать правильный знак для автобус / поезд / метро.',
-      'Decision: дешево и просто → bus; быстро и без пересадок → taxi; баланс → train.',
-      'Speaking: спросить цену и подтвердить, где именно остановка.'
+      'Выбрать правильный знак для автобуса, поезда или метро.',
+      'Решить, какой транспорт подходит лучше.',
+      'Спросить цену и уточнить, где остановка.'
     ],
     telegram: [
       'state.scene_id=airport_01',
@@ -881,15 +1049,15 @@ const branchData = {
     ]
   },
   baggage: {
-    label: 'Baggage problem',
+    label: 'Проблема с багажом',
     nav: 'Багаж',
-    badge: 'Deep dive · branch 2',
+    badge: 'Ситуация',
     title: 'Когда чемодан не приехал',
-    intro: 'Сильная жизненная ветка: ученик должен назвать проблему, найти стойку и понять следующий шаг. Web объясняет структуру, Telegram даёт сжатый реальный диалог.',
+    intro: 'Здесь ты учишься объяснить проблему с багажом и понять, что делать дальше.',
     goal: 'Сообщить о пропавшем багаже и понять, что делать дальше.',
-    tip: 'Лучше одна чёткая фраза + багажная бирка, чем длинная сбивчивая история.',
+    tip: 'Сначала коротко назови проблему, потом покажи багажную бирку.',
     words: [
-      ['maleta', 'чемодан'], ['cinta', 'лента выдачи'], ['etiqueta', 'багажная бирка'], ['reclamación', 'претензия / claim'], ['mostrador', 'стойка'], ['perdido', 'потерянный']
+      ['maleta', 'чемодан'], ['cinta', 'лента выдачи'], ['etiqueta', 'багажная бирка'], ['reclamación', 'заявка о пропаже'], ['mostrador', 'стойка'], ['perdido', 'потерянный']
     ],
     patterns: [
       'Tengo un problema con mi equipaje.',
@@ -898,9 +1066,9 @@ const branchData = {
       'Aquí tiene la etiqueta.'
     ],
     tasks: [
-      'Recognition: найти правильную стойку — information vs baggage claim.',
-      'Decision: сначала назвать проблему, потом показать etiqueta.',
-      'Speaking: попросить помощь и спросить, что делать сейчас.'
+      'Найти нужную стойку информации или розыска багажа.',
+      'Сначала назвать проблему, потом показать багажную бирку.',
+      'Попросить помощь и спросить, что делать сейчас.'
     ],
     telegram: [
       'state.scene_id=airport_01',
@@ -921,6 +1089,8 @@ const state = {
   mode: 'quick',
   index: 0,
   branch: 'transfer',
+  nativeLanguage: 'Русский',
+  targetLanguage: 'Испанский',
   showHints: true,
   vocabStage: 'intro',
   vocabCardIndex: 0,
@@ -929,6 +1099,7 @@ const state = {
   vocabQuizAnswered: false,
   vocabQuizScore: 0,
   vocabTranslationOpen: false,
+  vocabQuizReveal: false,
   phraseBuild: [],
   phraseTarget: ['¿', 'Me', 'puede', 'ayudar', '?'],
   phraseStage: 'intro',
@@ -939,9 +1110,12 @@ const state = {
   phraseBasicsChoice: null,
   phraseBasicsAnswered: false,
   phraseBasicsScore: 0,
+  phraseProblemReveal: false,
+  phraseRecoveryReveal: false,
   voiceRecording: false,
   voiceDone: false,
   voiceChecked: false,
+  voiceScenarioIndex: 0,
   borderStage: 'intro',
   borderTurn: 0,
   borderChoice: null,
@@ -954,6 +1128,47 @@ const state = {
   helpScore: 0
 };
 
+function weakestStep() {
+  const areas = [
+    { index: 2, score: state.vocabQuizScore / vocabFlowItems.length },
+    { index: 3, score: phraseFlowDone() ? 1 : phraseStageProgress() / 7 },
+    { index: 4, score: state.borderScore / borderTurns.length },
+    { index: 5, score: state.helpScore / helpTurns.length }
+  ];
+  return areas.sort((a, b) => a.score - b.score)[0];
+}
+
+function repeatWeakest() {
+  const target = weakestStep();
+  state.mode = 'quick';
+  state.index = target.index;
+  flash('Открываю самый слабый шаг для повтора.');
+  render();
+}
+
+function setVoiceScenario(index) {
+  state.voiceScenarioIndex = index;
+  state.voiceRecording = false;
+  state.voiceDone = false;
+  state.voiceChecked = false;
+  render();
+}
+
+function revealVocabOptions() {
+  state.vocabQuizReveal = true;
+  render();
+}
+
+function revealPhraseProblem() {
+  state.phraseProblemReveal = true;
+  render();
+}
+
+function revealPhraseRecovery() {
+  state.phraseRecoveryReveal = true;
+  render();
+}
+
 const screen = document.getElementById('screen');
 const steps = document.getElementById('steps');
 const quickBtn = document.getElementById('quickMode');
@@ -962,9 +1177,21 @@ const eyebrow = document.getElementById('eyebrow');
 const heroTitle = document.getElementById('heroTitle');
 const heroCopy = document.getElementById('heroCopy');
 const progressMeta = document.getElementById('progressMeta');
+const heroProgress = document.getElementById('heroProgress');
+const controlsCopy = document.getElementById('controlsCopy');
 
 function visualStrip() {
-  return `<div class="visual-strip route-strip"><button class="route-card route-active" onclick="go(1)"><span class="route-step">Step 1</span><strong>Airport arrival</strong><em>Start here</em></button><button class="route-card" onclick="flash('Step 2 opens after the airport arrival scene.')"><span class="route-step">Step 2</span><strong>Signs & navigation</strong><em>Read the airport around you</em></button><button class="route-card" onclick="flash('Step 3 opens after the airport arrival scene.')"><span class="route-step">Step 3</span><strong>Passport control</strong><em>Short pressure moment before entry</em></button></div>`;
+  return `<div class="visual-strip route-strip"><div class="route-card route-active"><span class="route-step">Старт</span><strong>Аэропорт</strong><em>Слова, фразы и два коротких диалога</em></div></div>`;
+}
+
+function nextLabel() {
+  const data = screens();
+  const next = data[state.index + 1];
+  return next ? `Дальше: ${next.nav}` : (state.mode === 'quick' ? 'К отдельным ситуациям' : 'Готово');
+}
+
+function progressPills(data) {
+  return `<div class="progress-pills">${data.map((step, i) => `<button class="progress-pill ${i === state.index ? 'active' : ''} ${i < state.index ? 'done' : ''}" onclick="go(${i})">${i + 1}. ${step.nav}</button>`).join('')}</div>`;
 }
 
 function chooseQuiz() {}
@@ -976,6 +1203,15 @@ function go(i) { state.index = i; render(); }
 function scrollToHowItWorks() {
   const target = document.getElementById('howItWorks');
   if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function setNativeLanguage(value) {
+  state.nativeLanguage = value;
+  render();
+}
+
+function languageSettingsMarkup() {
+  return `<div class="selectors selectors-secondary low-emphasis"><label>Родной язык<select onchange="setNativeLanguage(this.value)"><option${state.nativeLanguage === 'Русский' ? ' selected' : ''}>Русский</option><option${state.nativeLanguage === 'English' ? ' selected' : ''}>English</option></select></label><label>Язык обучения<select disabled><option selected>${state.targetLanguage}</option></select></label></div>`;
 }
 
 function startVocabFlow() {
@@ -1009,6 +1245,7 @@ function startVocabQuiz() {
   state.vocabQuizChoice = null;
   state.vocabQuizAnswered = false;
   state.vocabQuizScore = 0;
+  state.vocabQuizReveal = false;
   render();
 }
 
@@ -1032,6 +1269,7 @@ function nextVocabQuiz() {
     state.vocabQuizIndex += 1;
     state.vocabQuizChoice = null;
     state.vocabQuizAnswered = false;
+    state.vocabQuizReveal = false;
   } else {
     state.vocabStage = 'result';
   }
@@ -1046,6 +1284,7 @@ function resetVocabFlow() {
   state.vocabQuizAnswered = false;
   state.vocabQuizScore = 0;
   state.vocabTranslationOpen = false;
+  state.vocabQuizReveal = false;
   render();
 }
 
@@ -1064,9 +1303,12 @@ function startPhraseFlow() {
   state.phraseBasicsChoice = null;
   state.phraseBasicsAnswered = false;
   state.phraseBasicsScore = 0;
+  state.phraseProblemReveal = false;
+  state.phraseRecoveryReveal = false;
   state.voiceRecording = false;
   state.voiceDone = false;
   state.voiceChecked = false;
+  state.voiceScenarioIndex = 0;
   render();
 }
 
@@ -1105,7 +1347,10 @@ function choosePhraseSub(value) {
 function choosePhraseProblem(value) {
   if (state.phraseStage !== 'problem') return;
   state.phraseProblemChoice = value;
-  if (value === 'No sé adónde tengo que ir.') state.phraseStage = 'recovery';
+  if (value === 'No sé adónde tengo que ir.') {
+    state.phraseStage = 'recovery';
+    state.phraseRecoveryReveal = false;
+  }
   render();
 }
 
@@ -1257,15 +1502,15 @@ function readinessScore() {
   if (phraseFlowDone()) score += 1;
   if (state.phraseBasicsScore >= 2) score += 1;
   if (state.borderScore >= 2) score += 1;
-  if (state.helpScore >= 3) score += 1;
+  if (state.helpScore >= 4) score += 1;
   return score;
 }
 
 function readinessLabel() {
   const score = readinessScore();
-  if (score >= 5) return 'Ready for Telegram';
-  if (score >= 3) return 'Strong enough to continue';
-  return 'Prep in progress';
+  if (score >= 5) return 'Готов к разговору';
+  if (score >= 3) return 'Можно идти дальше';
+  return 'Идём по шагам';
 }
 
 function flash(text) {
@@ -1282,31 +1527,31 @@ function tile(label, hint, action) {
 }
 
 function handoffCard({ mode, branch, pending, phrases }) {
-  return `<div class="handoff-card"><div><span class="section-kicker">Telegram handoff</span><h3>Переход не теряет состояние сцены</h3><p>Кнопка открывает Telegram сразу в нужной задаче. Это не “пойти в бот”, а “продолжить тот же урок в performance-режиме”.</p></div><div class="state-pill-row"><span class="state-pill">scene_id: airport_01</span><span class="state-pill">mode: ${mode}</span><span class="state-pill">branch: ${branch}</span><span class="state-pill">pending: ${pending}</span><span class="state-pill state-pill-readiness">${readinessLabel()}</span></div><div class="code-card"><b>Passed phrase set</b><code>${phrases.join(' · ')}</code></div><div class="cta-row"><button class="choice primary-dark" onclick="flash('Telegram handoff: state passed → airport_01 / ${branch}')">Practice in Telegram →</button><button class="choice ghost" onclick="flash('Web = prep, Telegram = live speaking.')">Why this matters</button></div></div>`;
+  return `<div class="handoff-card"><div><span class="section-kicker">Готово</span><h3>Можно переходить дальше</h3><p>Ты уже собрал куски речи, которые потом можно отправлять голосом почти без подготовки.</p></div><div class="code-card"><b>Фразы для повтора</b><code>${phrases.join(' · ')}</code></div><div class="cta-row"><button class="choice primary-dark" onclick="flash('Переходим к следующему шагу.')">Дальше</button><button class="choice ghost" onclick="flash('При желании можно ещё раз пройти фразы.')">Повторить</button></div></div>`;
 }
 
 function newWordsFlow() {
   if (state.vocabStage === 'intro') {
-    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">New words</span><span class="mini-score">${vocabFlowItems.length} words for this scene</span></div><h3>Сначала — одно слово, одна картинка, один фокус</h3><p>Юзер не видит весь набор сразу. Он спокойно проходит короткую цепочку и только потом получает быстрый тест.</p><div class="word-flow-intro"><button class="choice primary-dark" onclick="startVocabFlow()">Start</button></div></div>`;
+    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Слова</span><span class="mini-score">${vocabFlowItems.length} слов</span></div><h3>Разберём слова, которые нужны прямо сейчас</h3><p>Смотри карточки по одной, а потом пройди короткую проверку.</p><div class="word-flow-intro"><button class="choice primary-dark" onclick="startVocabFlow()">Начать</button></div></div>`;
   }
 
   if (state.vocabStage === 'cards') {
     const item = vocabFlowItems[state.vocabCardIndex];
-    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">New words</span><span class="mini-score">${state.vocabCardIndex + 1}/${vocabFlowItems.length}</span></div><div class="single-word-card"><div class="single-word-photo" style="--photo:${item[3]}" role="img" aria-label="${item[1]}"></div><div class="single-word-copy"><strong>${item[0]}</strong><button class="choice ghost small-choice" onclick="toggleVocabTranslation()">${state.vocabTranslationOpen ? 'Hide translation' : 'Show translation'}</button>${state.vocabTranslationOpen ? `<div class="word-translation"><em>${item[1]}</em><p>${item[2]}</p></div>` : ''}</div></div><div class="single-word-actions"><button class="choice ghost" onclick="prevVocabCard()" ${state.vocabCardIndex === 0 ? 'disabled' : ''}>Back</button><button class="choice primary-dark" onclick="nextVocabCard()">${state.vocabCardIndex === vocabFlowItems.length - 1 ? 'Finish words' : 'Next'}</button></div></div>`;
+    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Слова</span><span class="mini-score">${state.vocabCardIndex + 1}/${vocabFlowItems.length}</span></div><div class="single-word-card"><div class="single-word-photo" style="--photo:${item[3]}" role="img" aria-label="${item[1]}"></div><div class="single-word-copy"><strong>${item[0]}</strong><button class="choice ghost small-choice" onclick="toggleVocabTranslation()">${state.vocabTranslationOpen ? 'Скрыть перевод' : 'Показать перевод'}</button>${state.vocabTranslationOpen ? `<div class="word-translation"><em>${item[1]}</em><p>${item[2]}</p></div>` : ''}</div></div><div class="single-word-actions"><button class="choice ghost" onclick="prevVocabCard()" ${state.vocabCardIndex === 0 ? 'disabled' : ''}>Назад</button><button class="choice primary-dark" onclick="nextVocabCard()">${state.vocabCardIndex === vocabFlowItems.length - 1 ? 'Закончить' : 'Дальше'}</button></div></div>`;
   }
 
   if (state.vocabStage === 'ready') {
-    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">New words complete</span><span class="mini-score">Seen all ${vocabFlowItems.length}</span></div><h3>Хорошо. Теперь короткая проверка.</h3><p>Только после просмотра всех слов запускается мини-тест: фото → выбрать слово.</p><div class="word-flow-intro"><button class="choice primary-dark" onclick="startVocabQuiz()">Start test</button><button class="choice ghost" onclick="resetVocabFlow()">Restart words</button></div></div>`;
+    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Слова пройдены</span><span class="mini-score">${vocabFlowItems.length} из ${vocabFlowItems.length}</span></div><h3>Теперь короткая проверка</h3><p>Смотри на картинку и выбирай нужное слово.</p><div class="word-flow-intro"><button class="choice primary-dark" onclick="startVocabQuiz()">Начать проверку</button><button class="choice ghost" onclick="resetVocabFlow()">Посмотреть ещё раз</button></div></div>`;
   }
 
   if (state.vocabStage === 'quiz') {
     const item = vocabFlowItems[state.vocabQuizIndex];
     const options = vocabQuizOptions(state.vocabQuizIndex);
     const correct = state.vocabQuizChoice === item[0];
-    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Quick check</span><span class="mini-score">${state.vocabQuizIndex + 1}/${vocabFlowItems.length}</span></div><div class="single-word-card quiz-card"><div class="single-word-photo" style="--photo:${item[3]}" role="img" aria-label="${item[1]}"></div><div class="single-word-copy"><strong>Which word matches?</strong><div class="quiz-stack">${options.map((option) => `<button class="choice quiz-choice ${state.vocabQuizAnswered && option === item[0] ? 'correct' : ''} ${state.vocabQuizAnswered && state.vocabQuizChoice === option && option !== item[0] ? 'wrong' : ''}" onclick="chooseVocabQuiz('${option.replace(/'/g, "\\'")}')">${option}</button>`).join('')}</div>${state.vocabQuizAnswered ? `<div class="feedback ${correct ? 'good' : 'bad'}">${correct ? `✅ Correct — ${item[0]}` : `Not quite. Correct answer: ${item[0]}`}</div><button class="choice primary-dark" onclick="nextVocabQuiz()">${state.vocabQuizIndex === vocabFlowItems.length - 1 ? 'Finish test' : 'Next question'}</button>` : ''}</div></div></div>`;
+    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Шаг · Проверка</span><span class="mini-score">${state.vocabQuizIndex + 1}/${vocabFlowItems.length}</span></div><div class="single-word-card quiz-card"><div class="single-word-photo" style="--photo:${item[3]}" role="img" aria-label="${item[1]}"></div><div class="single-word-copy"><strong>Сначала назови слово сам</strong><p class="microcopy">Посмотри на картинку и попробуй вспомнить испанское слово без подсказок.</p>${state.vocabQuizReveal ? `<div class="quiz-stack">${options.map((option) => `<button class="choice quiz-choice ${state.vocabQuizAnswered && option === item[0] ? 'correct' : ''} ${state.vocabQuizAnswered && state.vocabQuizChoice === option && option !== item[0] ? 'wrong' : ''}" onclick="chooseVocabQuiz('${option.replace(/'/g, "\\'")}')">${option}</button>`).join('')}</div>` : `<div class="recall-gate"><div class="target-line">Скажи вслух, потом открой варианты.</div><button class="choice ghost" onclick="revealVocabOptions()">Показать варианты</button></div>`}${state.vocabQuizAnswered ? `<div class="feedback ${correct ? 'good' : 'bad'}">${correct ? `Верно — ${item[0]}` : `Неверно. Правильный ответ: ${item[0]}`}</div><button class="choice primary-dark" onclick="nextVocabQuiz()">${state.vocabQuizIndex === vocabFlowItems.length - 1 ? 'Закончить' : 'Следующее слово'}</button>` : ''}</div></div></div>`;
   }
 
-  return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Quick check complete</span><span class="mini-score">${state.vocabQuizScore}/${vocabFlowItems.length} correct</span></div><h3>Готово — слова просмотрены и быстро проверены.</h3><p>Теперь можно идти дальше: к фразам и speaking-подготовке.</p><div class="word-flow-intro"><button class="choice primary-dark" onclick="go(3)">Continue to phrases</button><button class="choice ghost" onclick="resetVocabFlow()">Review words again</button></div></div>`;
+  return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Проверка пройдена</span><span class="mini-score">${state.vocabQuizScore}/${vocabFlowItems.length}</span></div><h3>Готово — слова уже знакомы.</h3><p>Теперь можно переходить к фразам.</p><div class="word-flow-intro"><button class="choice primary-dark" onclick="go(3)">К фразам</button><button class="choice ghost" onclick="resetVocabFlow()">Повторить слова</button></div></div>`;
 }
 
 function phraseStageProgress() {
@@ -1316,74 +1561,75 @@ function phraseStageProgress() {
 
 function phraseFlow() {
   if (state.phraseStage === 'intro') {
-    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Phrase prep</span><span class="mini-score">7 short moves</span></div><h3>Фразы тоже идём по одной: от главной просьбы к живой реплике</h3><p>Сначала собираем главный speaking chunk, потом тренируем вариации и только затем переходим к voice check и Telegram.</p><div class="word-flow-intro"><button class="choice primary-dark" onclick="startPhraseFlow()">Start phrase flow</button></div></div>`;
+    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Фразы</span><span class="mini-score">7 шагов</span></div><h3>Соберём полезные фразы для аэропорта</h3><p>Без теории ради теории: сначала рабочие куски речи, потом короткие вариации и только затем голос внутри сцены.</p><div class="word-flow-intro"><button class="choice primary-dark" onclick="startPhraseFlow()">Начать</button></div></div>`;
   }
 
   if (state.phraseStage === 'build') {
     const built = state.phraseBuild.join(' ');
-    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Phrase flow</span><span class="mini-score">1/7</span></div><h3>Собери главную просьбу</h3><p>Нужно не знать правило, а быстро доставать полезный кусок речи.</p><div class="tile-row">${[['¿', 'начало вопроса'], ['Me', 'мне'], ['puede', 'можете'], ['ayudar', 'помочь'], ['?', 'конец вопроса']].map(([x, h]) => tile(x, h, `addWord('${x}')`)).join('')}</div><div class="target-line">${built || 'Собери: “¿Me puede ayudar?”'}</div><div class="word-flow-intro"><button class="choice primary-dark" onclick="checkPhrase()">Проверить</button><button class="choice ghost" onclick="clearPhrase()">Сбросить</button></div></div>`;
+    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Фразы</span><span class="mini-score">1/7</span></div><h3>Собери главную просьбу</h3><p>Нужно не знать правило, а быстро доставать полезный кусок речи.</p><div class="tile-row">${[['¿', 'начало вопроса'], ['Me', 'мне'], ['puede', 'можете'], ['ayudar', 'помочь'], ['?', 'конец вопроса']].map(([x, h]) => tile(x, h, `addWord('${x}')`)).join('')}</div><div class="target-line">${built || 'Собери: “¿Me puede ayudar?”'}</div><div class="word-flow-intro"><button class="choice primary-dark" onclick="checkPhrase()">Проверить</button><button class="choice ghost" onclick="clearPhrase()">Сбросить</button></div></div>`;
   }
 
   if (state.phraseStage === 'substitute') {
     const ok = state.phraseSubChoice === 'explicar';
-    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Phrase flow</span><span class="mini-score">2/7</span></div><h3>Меняем только действие</h3><p>Так юзер учит не одну фразу, а целую конструкцию: <b>¿Me puede ... ?</b></p><div class="quiz-stack">${[['repetir','повторить'],['explicar','объяснить'],['indicar','подсказать']].map(([option,hint]) => `<button class="choice quiz-choice ${state.phraseSubChoice === option ? (ok && option === 'explicar' ? 'correct' : option === 'explicar' ? '' : 'wrong') : ''}" onclick="choosePhraseSub('${option}')"><strong>${option}</strong><span>${hint}</span></button>`).join('')}</div>${state.phraseSubChoice ? `<div class="feedback ${ok ? 'good' : 'bad'}">${ok ? 'Верно: теперь learner видит, что одна конструкция держит сразу несколько глаголов.' : 'Для этой подсказки нужен вариант explicar → “¿Me puede explicar?”'}</div>${ok ? '<button class="choice primary-dark" onclick="render()">Дальше</button>' : ''}` : ''}</div>`;
+    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Фразы</span><span class="mini-score">2/7</span></div><h3>Меняем только действие</h3><p>Одна схема даёт сразу несколько полезных фраз: <b>¿Me puede ... ?</b> Это уже не зубрёжка одной реплики, а управляемая вариативность.</p><div class="quiz-stack">${[['repetir','повторить'],['explicar','объяснить'],['indicar','подсказать']].map(([option,hint]) => `<button class="choice quiz-choice ${state.phraseSubChoice === option ? (ok && option === 'explicar' ? 'correct' : option === 'explicar' ? '' : 'wrong') : ''}" onclick="choosePhraseSub('${option}')"><strong>${option}</strong><span>${hint}</span></button>`).join('')}</div>${state.phraseSubChoice ? `<div class="feedback ${ok ? 'good' : 'bad'}">${ok ? 'Верно: “¿Me puede explicar?” — рабочая фраза для уточнения.' : 'Здесь нужен вариант explicar → “¿Me puede explicar?”'}</div><div class="microcopy">Тот же каркас потом даст и <b>¿Me puede repetir?</b>, и <b>¿Me puede indicar?</b></div>` : ''}</div>`;
   }
 
   if (state.phraseStage === 'problem') {
     const ok = state.phraseProblemChoice === 'No sé adónde tengo que ir.';
-    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Phrase flow</span><span class="mini-score">3/7</span></div><h3>Одна проблема — одна точная фраза</h3><p><b>Ситуация:</b> ты вышел после прилёта и не понимаешь, куда идти дальше.</p><div class="quiz-stack">${['No sé adónde tengo que ir.','Tengo un problema con mi equipaje.','Me alojo en un hotel.'].map((option) => `<button class="choice quiz-choice ${state.phraseProblemChoice === option ? (ok && option === 'No sé adónde tengo que ir.' ? 'correct' : option === 'No sé adónde tengo que ir.' ? '' : 'wrong') : ''}" onclick="choosePhraseProblem('${option.replace(/'/g, "\\'")}')">${option}</button>`).join('')}</div>${state.phraseProblemChoice ? `<div class="feedback ${ok ? 'good' : 'bad'}">${ok ? 'Да: это ready-made фраза для момента, когда ты потерялся.' : 'Здесь нужна фраза про маршрут: “No sé adónde tengo que ir.”'}</div>` : ''}</div>`;
+    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Фразы</span><span class="mini-score">3/7</span></div><h3>Одна проблема — одна точная фраза</h3><p><b>Ситуация:</b> ты вышел после прилёта и не понимаешь, куда идти дальше.</p>${state.phraseProblemReveal ? `<div class="quiz-stack">${['No sé adónde tengo que ir.','Tengo un problema con mi equipaje.','Me alojo en un hotel.'].map((option) => `<button class="choice quiz-choice ${state.phraseProblemChoice === option ? (ok && option === 'No sé adónde tengo que ir.' ? 'correct' : option === 'No sé adónde tengo que ir.' ? '' : 'wrong') : ''}" onclick="choosePhraseProblem('${option.replace(/'/g, "\\'")}')">${option}</button>`).join('')}</div>` : `<div class="recall-gate"><div class="target-line">Сначала ответь сам по-испански. Потом, если нужно, открой варианты.</div><button class="choice ghost" onclick="revealPhraseProblem()">Показать варианты</button></div>`}${state.phraseProblemChoice ? `<div class="feedback ${ok ? 'good' : 'bad'}">${ok ? 'Да: это фраза для ситуации, когда ты потерялся.' : 'Здесь нужна фраза про маршрут: “No sé adónde tengo que ir.”'}</div>` : ''}</div>`;
   }
 
   if (state.phraseStage === 'recovery') {
     const ok = state.phraseRecoveryChoice === '¿Puede repetir, por favor?';
-    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Phrase flow</span><span class="mini-score">4/7</span></div><h3>Recovery move, который спасает разговор</h3><p><b>Ситуация:</b> сотрудник ответил слишком быстро. Нельзя зависнуть — нужно перехватить разговор.</p><div class="quiz-stack">${['¿Puede repetir, por favor?','No, gracias.','Tengo tres días.'].map((option) => `<button class="choice quiz-choice ${state.phraseRecoveryChoice === option ? (ok && option === '¿Puede repetir, por favor?' ? 'correct' : option === '¿Puede repetir, por favor?' ? '' : 'wrong') : ''}" onclick="choosePhraseRecovery('${option.replace(/'/g, "\\'")}')">${option}</button>`).join('')}</div>${state.phraseRecoveryChoice ? `<div class="feedback ${ok ? 'good' : 'bad'}">${ok ? 'Именно так: не угадывать, а мягко просить повторить.' : 'Здесь нужен recovery phrase: “¿Puede repetir, por favor?”'}</div>` : ''}</div>`;
+    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Фразы</span><span class="mini-score">4/7</span></div><h3>Фраза, которая помогает не потеряться в разговоре</h3><p><b>Ситуация:</b> сотрудник ответил слишком быстро. Нельзя зависнуть — нужно перехватить разговор.</p>${state.phraseRecoveryReveal ? `<div class="quiz-stack">${['¿Puede repetir, por favor?','No, gracias.','Tengo tres días.'].map((option) => `<button class="choice quiz-choice ${state.phraseRecoveryChoice === option ? (ok && option === '¿Puede repetir, por favor?' ? 'correct' : option === '¿Puede repetir, por favor?' ? '' : 'wrong') : ''}" onclick="choosePhraseRecovery('${option.replace(/'/g, "\\'")}')">${option}</button>`).join('')}</div>` : `<div class="recall-gate"><div class="target-line">Сначала сам скажи фразу спасения. Только потом открывай варианты.</div><button class="choice ghost" onclick="revealPhraseRecovery()">Показать варианты</button></div>`}${state.phraseRecoveryChoice ? `<div class="feedback ${ok ? 'good' : 'bad'}">${ok ? 'Именно так: не угадывать, а мягко просить повторить.' : 'Здесь нужна фраза: “¿Puede repetir, por favor?”'}</div>` : ''}</div>`;
   }
 
   if (state.phraseStage === 'basics') {
     const item = basePatternItems[state.phraseBasicsIndex];
     const ok = state.phraseBasicsChoice === item.answer;
-    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">${item.kicker}</span><span class="mini-score">${5 + state.phraseBasicsIndex}/7</span></div><h3>${item.title}</h3><p>${item.note}</p><div class="pattern-family">${item.forms.map(([subject, verb, tail]) => `<div class="pattern-row"><span>${subject}</span><strong>${verb}</strong><em>${tail}</em></div>`).join('')}</div><div class="target-line">${item.prompt}</div><div class="quiz-stack">${item.options.map((option) => `<button class="choice quiz-choice ${state.phraseBasicsAnswered && option === item.answer ? 'correct' : ''} ${state.phraseBasicsAnswered && state.phraseBasicsChoice === option && option !== item.answer ? 'wrong' : ''}" onclick="chooseBasePattern('${option}')">${option}</button>`).join('')}</div>${state.phraseBasicsAnswered ? `<div class="feedback ${ok ? 'good' : 'bad'}">${ok ? `Да — ${item.sample}` : `Не совсем. Правильно: ${item.sample}`}</div><div class="word-flow-intro"><button class="choice primary-dark" onclick="nextBasePattern()">${state.phraseBasicsIndex === basePatternItems.length - 1 ? 'Continue to voice check' : 'Next base pattern'}</button><button class="choice ghost" onclick="skipToPhraseVoice()">Skip to voice</button></div>` : ''}</div>`;
+    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">${item.kicker}</span><span class="mini-score">${5 + state.phraseBasicsIndex}/7</span></div><h3>${item.title}</h3><p>${item.note}</p><div class="pattern-family">${item.forms.map(([subject, verb, tail]) => `<div class="pattern-row"><span>${subject}</span><strong>${verb}</strong><em>${tail}</em></div>`).join('')}</div><div class="target-line">${item.prompt}</div><div class="quiz-stack">${item.options.map((option) => `<button class="choice quiz-choice ${state.phraseBasicsAnswered && option === item.answer ? 'correct' : ''} ${state.phraseBasicsAnswered && state.phraseBasicsChoice === option && option !== item.answer ? 'wrong' : ''}" onclick="chooseBasePattern('${option}')">${option}</button>`).join('')}</div>${state.phraseBasicsAnswered ? `<div class="feedback ${ok ? 'good' : 'bad'}">${ok ? `Да — ${item.sample}` : `Не совсем. Правильно: ${item.sample}`}</div><div class="word-flow-intro"><button class="choice primary-dark" onclick="nextBasePattern()">${state.phraseBasicsIndex === basePatternItems.length - 1 ? 'К проверке вслух' : 'Следующая конструкция'}</button><button class="choice ghost" onclick="skipToPhraseVoice()">Пропустить</button></div>` : ''}</div>`;
   }
 
   if (state.phraseStage === 'voice') {
-    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Voice check</span><span class="mini-score">7/7</span></div><h3>Теперь скажи это как один живой ход</h3><p>Сначала learner говорит просьбу и проблему вместе. Это уже почти Telegram-ready output.</p><button class="voice-button ${state.voiceRecording ? 'recording' : ''} ${state.voiceDone ? 'done' : ''}" onclick="toggleVoice()">${state.voiceRecording ? 'Остановить запись' : state.voiceDone ? 'Записано ✓' : '🎙️ Записать ответ'}</button><button class="choice" onclick="checkVoice()">AI проверить</button><button class="choice ghost" onclick="resetVoice()">Перезаписать</button><div class="target-line">Target: ¿Me puede ayudar? No sé adónde tengo que ir.</div>${state.voiceDone && !state.voiceChecked ? `<p class="microcopy">Запись уже есть. Теперь AI проверяет, слышны ли главные куски.</p>` : ''}${state.voiceChecked ? `<div class="ai-feedback"><b>AI feedback</b><ul><li>Смысл ясен: ты просишь помощь и называешь проблему.</li><li>Слышны главные chunks: <code>me puede ayudar</code>, <code>no sé</code>, <code>tengo que ir</code>.</li><li>Базовые конструкции уже подводят к сцене: quiero / voy / tengo помогут вариативно отвечать дальше.</li></ul></div>` : ''}</div>`;
+    const scenario = voiceScenarios[state.voiceScenarioIndex];
+    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Диалог · ответ вслух</span><span class="mini-score">7/7</span></div><h3>Вот ситуация — ответь по-испански</h3><p>Представь, что это короткая голосовуха в Telegram: без чтения с экрана, без идеальных формулировок, но по делу.</p><div class="scenario-grid">${voiceScenarios.map((item, index) => `<button class="scenario-card ${state.voiceScenarioIndex === index ? 'active' : ''}" onclick="setVoiceScenario(${index})"><strong>${item.title}</strong><span>${item.prompt}</span></button>`).join('')}</div><div class="scenario-coach"><b>Что нужно сделать</b><p>${scenario.prompt}</p><ul>${scenario.coaching.map((tip) => `<li>${tip}</li>`).join('')}</ul><div class="pressure-inline">В реальном продукте тут будет быстрый голосовой ответ под лёгким тайм-pressure.</div></div><button class="voice-button ${state.voiceRecording ? 'recording' : ''} ${state.voiceDone ? 'done' : ''}" onclick="toggleVoice()">${state.voiceRecording ? 'Остановить запись' : state.voiceDone ? 'Записано ✓' : '🎙️ Записать ответ'}</button><button class="choice" onclick="checkVoice()">Проверить</button><button class="choice ghost" onclick="resetVoice()">Перезаписать</button><div class="target-line">Эталон: ${scenario.target}</div>${state.voiceDone && !state.voiceChecked ? `<p class="microcopy">Запись готова. Теперь проверь не «идеально ли», а понял бы тебя живой собеседник.</p>` : ''}${state.voiceChecked ? `<div class="ai-feedback"><b>Что получилось</b><ul><li>Ответ привязан к ситуации, а не к абстрактной фразе.</li><li>Ты либо просишь помощь, либо восстанавливаешь контроль, либо называешь проблему.</li><li>Этого уже достаточно, чтобы сцена не развалилась.</li></ul></div>` : ''}</div>`;
   }
 
-  return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Phrase flow complete</span><span class="mini-score">Ready</span></div><h3>Фразы собраны в рабочую мини-систему</h3><p>Теперь learner не просто видел фразы, а прошёл путь: главная просьба → вариация → проблема → recovery → базовые конструкции → голос.</p>${handoffCard({ mode: 'quick_pass', branch: 'border_then_main', pending: 'border_control', phrases: ['¿Me puede ayudar?', 'No sé adónde tengo que ir.', 'Yo quiero ayuda.', 'Yo tengo un problema.'] })}</div>`;
+  return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Фразы собраны</span><span class="mini-score">Готово</span></div><h3>Фразы готовы</h3><p>Ты собрал главные фразы и можешь переходить дальше.</p>${handoffCard({ mode: 'quick_pass', branch: 'border_then_main', pending: 'border_control', phrases: ['¿Me puede ayudar?', 'No sé adónde tengo que ir.', 'Yo quiero ayuda.', 'Yo tengo un problema.'] })}</div>`;
 }
 
 function turnByTurnFlow({ stage, introTitle, introText, startAction, resetAction, turns, currentTurn, choice, answered, resultTitle, resultText, score, nextAction, chooseAction, ctaLabel, resultCta, secondaryCta }) {
   if (stage === 'intro') {
-    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Live simulation</span><span class="mini-score">${turns.length} turns</span></div><h3>${introTitle}</h3><p>${introText}</p><div class="word-flow-intro"><button class="choice primary-dark" onclick="${startAction}()">Start simulation</button></div></div>`;
+    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Диалог</span><span class="mini-score">${turns.length} хода</span></div><h3>${introTitle}</h3><p>${introText}</p><div class="word-flow-intro"><button class="choice primary-dark" onclick="${startAction}()">Начать</button></div></div>`;
   }
 
   if (stage === 'turn') {
     const turn = turns[currentTurn];
     const ok = choice === turn.correct;
-    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Turn by turn</span><span class="mini-score">${currentTurn + 1}/${turns.length}</span></div><div class="turn-card"><div class="bot-line"><span class="section-kicker">Bot says</span><strong>${turn.bot}</strong></div><p>${turn.prompt}</p><div class="quiz-stack">${turn.options.map((option) => `<button class="choice quiz-choice ${answered && option === turn.correct ? 'correct' : ''} ${answered && choice === option && option !== turn.correct ? 'wrong' : ''}" onclick="${chooseAction}('${option.replace(/'/g, "\\'")}')">${option}</button>`).join('')}</div>${answered ? `<div class="feedback ${ok ? 'good' : 'bad'}">${ok ? turn.feedback : `Лучше так: ${turn.correct}`}</div><button class="choice primary-dark" onclick="${nextAction}()">${currentTurn === turns.length - 1 ? resultCta : ctaLabel}</button>` : ''}</div></div>`;
+    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Диалог</span><span class="mini-score">${currentTurn + 1}/${turns.length}</span></div><div class="turn-card"><div class="bot-line"><span class="section-kicker">Собеседник</span><strong>${turn.bot}</strong></div>${turn.pressure ? `<div class="pressure-inline">${turn.pressure}</div>` : ''}<p>${turn.prompt}</p><div class="quiz-stack">${turn.options.map((option) => `<button class="choice quiz-choice ${answered && option === turn.correct ? 'correct' : ''} ${answered && choice === option && option !== turn.correct ? 'wrong' : ''}" onclick="${chooseAction}('${option.replace(/'/g, "\\'")}')">${option}</button>`).join('')}</div>${answered ? `<div class="feedback ${ok ? 'good' : 'bad'}">${ok ? turn.feedback : `Лучше так: ${turn.correct}`}</div><button class="choice primary-dark" onclick="${nextAction}()">${currentTurn === turns.length - 1 ? resultCta : ctaLabel}</button>` : ''}</div></div>`;
   }
 
-  return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Simulation complete</span><span class="mini-score">${score}/${turns.length} solid turns</span></div><h3>${resultTitle}</h3><p>${resultText}</p><div class="summary-grid micro-summary"><div class="summary-card"><b>Что уже получилось</b><ul><li>реагировать по очереди, а не читать весь диалог заранее</li><li>выбирать короткий рабочий ответ</li><li>держать mild pressure без длинной паузы</li></ul></div><div class="summary-card"><b>Что закрепить ещё</b><ul><li>доставать ответ быстрее</li><li>не теряться при быстрой реплике</li><li>подтверждать следующий шаг своими словами</li></ul></div></div><div class="word-flow-intro"><button class="choice primary-dark" onclick="${secondaryCta}">Continue</button><button class="choice ghost" onclick="${resetAction}()">Repeat simulation</button></div></div>`;
+  return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Готово</span><span class="mini-score">${score}/${turns.length} правильных ответа</span></div><h3>${resultTitle}</h3><p>${resultText}</p><div class="summary-grid micro-summary"><div class="summary-card"><b>Что уже получилось</b><ul><li>реагировать по шагам</li><li>выбирать короткий рабочий ответ</li><li>не теряться в простом диалоге</li></ul></div><div class="summary-card"><b>Что закрепить ещё</b><ul><li>доставать ответ быстрее</li><li>не теряться при быстрой реплике</li><li>подтверждать следующий шаг своими словами</li></ul></div></div><div class="word-flow-intro"><button class="choice primary-dark" onclick="${secondaryCta}">Дальше</button><button class="choice ghost" onclick="${resetAction}()">Повторить</button></div></div>`;
 }
 
 function borderFlow() {
   return turnByTurnFlow({
     stage: state.borderStage,
-    introTitle: 'Мини-сцена: пограничник, но по-настоящему по ходам',
-    introText: 'Вместо полного скрипта заранее learner проходит 3 обязательных вопроса по одному. Так появляется настоящее micro-pressure и первый real win.',
+    introTitle: 'Паспортный контроль',
+    introText: 'Ответь на три коротких вопроса по очереди.',
     startAction: 'startBorderFlow',
     resetAction: 'resetBorderFlow',
     turns: borderTurns,
     currentTurn: state.borderTurn,
     choice: state.borderChoice,
     answered: state.borderAnswered,
-    resultTitle: 'Border warm-up пройден',
-    resultText: 'Теперь learner уже ответил на обязательные вопросы по очереди и не входит в главную сцену с нуля.',
+    resultTitle: 'Паспортный контроль пройден',
+    resultText: 'Ты уже ответил на базовые вопросы и можешь идти дальше.',
     score: state.borderScore,
     nextAction: 'nextBorderTurn',
     chooseAction: 'chooseBorderOption',
-    ctaLabel: 'Next turn',
-    resultCta: 'Finish warm-up',
+    ctaLabel: 'Дальше',
+    resultCta: 'Закончить',
     secondaryCta: 'go(5)'
   });
 }
@@ -1391,80 +1637,80 @@ function borderFlow() {
 function helpFlow() {
   return turnByTurnFlow({
     stage: state.helpStage,
-    introTitle: 'Главная airport help сцена — тоже по одному ходу',
-    introText: 'Здесь learner сначала просит помощь, потом использует полезная фраза, затем подтверждает маршрут и только потом закрывает разговор.',
+    introTitle: 'Мини-сцена: попросить помощь и не развалить разговор',
+    introText: 'Здесь уже не один правильный ответ, а связная сцена: открыть разговор, пережить быстрый ответ, остановиться на незнакомом слове, подтвердить маршрут и закрыть неожиданный follow-up.',
     startAction: 'startHelpFlow',
     resetAction: 'resetHelpFlow',
     turns: helpTurns,
     currentTurn: state.helpTurn,
     choice: state.helpChoice,
     answered: state.helpAnswered,
-    resultTitle: 'Главная speaking-сцена собрана',
-    resultText: 'Теперь это ощущается как репетиция живого диалога, а не как чтение готового идеального примера.',
+    resultTitle: 'Мини-сцена собрана',
+    resultText: 'Теперь это уже не набор фраз, а короткая живая ситуация с тремя точками давления.',
     score: state.helpScore,
     nextAction: 'nextHelpTurn',
     chooseAction: 'chooseHelpOption',
-    ctaLabel: 'Next move',
-    resultCta: 'Finish scene',
+    ctaLabel: 'Дальше',
+    resultCta: 'Закончить',
     secondaryCta: 'go(6)'
   });
 }
 
 function telegramThread(title, intro, chips, dialogue, summary) {
-  return `<div class="telegram-wrap"><div class="telegram-header"><div><span class="section-kicker">Telegram = performance</span><h3>${title}</h3><p>${intro}</p></div><div class="state-pill-row">${chips.map(chip => `<span class="state-pill">${chip}</span>`).join('')}</div></div><div class="telegram">${dialogue.map(([role, text]) => `<div class="message ${role}">${role === 'bot' ? '<b>Bot:</b> ' : '<span class="voice">'}${text}${role === 'bot' ? '' : '</span>'}</div>`).join('')}</div><div class="summary-card">${summary}</div></div>`;
+  return `<div class="telegram-wrap"><div class="telegram-header"><div><span class="section-kicker">Диалог</span><h3>${title}</h3><p>${intro}</p></div></div><div class="telegram">${dialogue.map(([role, text]) => `<div class="message ${role}">${role === 'bot' ? '<b>Собеседник:</b> ' : '<span class="voice">'}${text}${role === 'bot' ? '' : '</span>'}</div>`).join('')}</div><div class="summary-card">${summary}</div></div>`;
 }
 
 function deepHub() {
-  return `<span class="badge">Больше практики · Airport</span><h2 class="screen-title">Углубить аэропорт как реальную среду</h2><p>Quick pass дал survival win. Больше практики добавляет решения, ветки и speaking-сцены, чтобы аэропорт ощущался как реальное место, а не как тема из учебника.</p><div class="branch-grid">${Object.entries(branchData).map(([key, branch]) => `<button class="branch-card ${state.branch === key ? 'active' : ''}" onclick="setBranch('${key}')"><span class="mini-tag">${branch.badge}</span><strong>${branch.label}</strong><p>${branch.goal}</p><div class="branch-meta"><span>Web prep</span><span>Telegram branch</span></div></button>`).join('')}</div><div class="grid compact-grid"><div class="info-box dark"><b>Web = prep</b><p>Слова среды, decision drills, controlled voice check, practical tips.</p></div><div class="info-box dark"><b>Telegram = performance</b><p>Короткий branch-specific диалог, где надо ответить голосом и восстановиться под давлением.</p></div></div>`;
+  return `<span class="badge">Практика</span><h2 class="screen-title">Выбери следующую ситуацию</h2><p>После основного маршрута не нужно повторять всё подряд: выбираешь только ту сцену, которая реально нужна.</p><div class="branch-grid">${Object.entries(branchData).map(([key, branch]) => `<button class="branch-card ${state.branch === key ? 'active' : ''}" onclick="setBranch('${key}')"><span class="mini-tag">${branch.badge}</span><strong>${branch.label}</strong><p>${branch.goal}</p></button>`).join('')}</div>`;
 }
 
 function deepBranch() {
   const branch = branchData[state.branch];
-  return `<span class="badge">${branch.badge}</span><h2 class="screen-title">${branch.title}</h2><p>${branch.intro}</p><div class="grid compact-grid"><div class="info-box"><b>Практическая цель</b><p>${branch.goal}</p></div><div class="info-box"><b>Практическая логика</b><p>${branch.tip}</p></div></div><div class="three-col"><div class="word-panel"><span class="section-kicker">Survival words</span>${branch.words.map(([es, ru]) => `<div class="word"><strong>${es}</strong>${ru}</div>`).join('')}</div><div class="pattern-box"><span class="section-kicker">Reusable patterns</span><ul>${branch.patterns.map(x => `<li>${x}</li>`).join('')}</ul></div><div class="pattern-box"><span class="section-kicker">Mission tasks</span><ul>${branch.tasks.map(x => `<li>${x}</li>`).join('')}</ul></div></div>${handoffCard({ mode: 'deep_dive', branch: branch.telegram[2].split('=')[1], pending: branch.telegram[3].split('=')[1], phrases: branch.patterns.slice(0, 3) })}`;
+  return `<span class="badge">Практика</span><h2 class="screen-title">${branch.title}</h2><p>${branch.intro}</p><div class="grid compact-grid"><div class="info-box"><b>Что сделать</b><p>${branch.goal}</p></div><div class="info-box"><b>Фокус</b><p>${branch.tip}</p></div></div><div class="three-col"><div class="word-panel"><span class="section-kicker">Слова</span>${branch.words.map(([es, ru]) => `<div class="word"><strong>${es}</strong>${ru}</div>`).join('')}</div><div class="pattern-box"><span class="section-kicker">Куски речи</span><ul>${branch.patterns.map(x => `<li>${x}</li>`).join('')}</ul></div><div class="pattern-box"><span class="section-kicker">Что сделать в сцене</span><ul>${branch.tasks.map(x => `<li>${x}</li>`).join('')}</ul></div></div>${handoffCard({ mode: 'deep_dive', branch: branch.telegram[2].split('=')[1], pending: branch.telegram[3].split('=')[1], phrases: branch.patterns.slice(0, 3) })}`;
 }
 
 function deepTelegram() {
   const branch = branchData[state.branch];
-  return `<span class="badge">Telegram branch simulation</span><h2 class="screen-title">${branch.label} · voice branch</h2><p>Здесь видно, как Web-подготовка превращается в конкретный Telegram-сценарий с переданным state.</p>${telegramThread('Branch scene ready to launch', 'После кнопки learner попадает сразу в нужную ветку и видит только следующую задачу, а не общий чат бота.', branch.telegram, branch.dialogue, '<b>Branch success signal:</b> learner назвал проблему, задал полезный вопрос и понял следующий шаг.')}<div class="deep-lock"><b>Что ещё можно добавить позже:</b><p>больше вариаций реплик, city-specific facts и связку completion → suggested next branch.</p></div>`;
+  return `<span class="badge">Диалог</span><h2 class="screen-title">${branch.label}</h2><p>Такой разговор уже можно разыгрывать голосом: короткими ходами, без длинных монологов.</p>${telegramThread('Пример диалога', 'Сначала смотришь структуру, потом отвечаешь своими словами, как будто это Telegram voice.', branch.telegram, branch.dialogue, '<b>Цель:</b> назвать проблему, задать полезный вопрос и понять следующий шаг.')}`;
 }
 
 const quickScreens = [
   {
-    nav: 'Course home',
+    nav: 'Старт',
     home: true,
-    html: () => `<div class="landing-utility"><div class="selectors selectors-secondary"><label>Родной язык<select><option>English</option><option>Русский</option></select></label><label>Язык обучения<select><option>Русский</option><option>English</option></select></label></div></div><span class="badge">Life Learning</span><h2 class="screen-title">Испанский для реальной жизни</h2><p>Learn Spanish through real airport situations.<br>Short web prep first, then live speaking in Telegram.</p>${visualStrip()}<div class="meta-row"><span class="meta-chip">Beginner</span><span class="meta-chip">7 min web prep</span><span class="meta-chip">5 min Telegram speaking</span></div><div class="cta-stack top-gap"><button class="choice primary-dark" onclick="go(1)">Начать аэропорт</button><button class="choice ghost" onclick="scrollToHowItWorks()">Как это работает</button></div><section id="howItWorks" class="below-fold-stack"><div class="info-box how-it-works"><b>Как это работает</b><ol><li><strong>See the situation</strong><span>Start with one real airport scene.</span></li><li><strong>Collect the phrases you need</strong><span>Take only the words and patterns for that moment.</span></li><li><strong>Use them in live Telegram speaking</strong><span>Practice the scene in a short guided conversation.</span></li></ol></div><div class="home-grid below-grid"><div class="info-box"><b>Базовый маршрут и практика</b><p>Базовый маршрут помогает быстро войти в ситуацию. Практика даёт ещё одну жизненную сцену и дополнительные повторы.</p></div><div class="info-box"><b>Почему Telegram</b><p>Разговорная практика встроена прямо в урок, поэтому всё ощущается как один цельный процесс.</p></div><div class="info-box"><b>Можно ли пропускать сцены?</b><p>Да, но лучше идти по порядку: первая сцена снимает лишнее напряжение перед остальным маршрутом.</p></div></div><div class="settings-box"><span class="section-kicker">Настройки языка</span><p>Язык — это вспомогательная настройка, а не барьер перед стартом.</p><div class="selectors selectors-secondary low-emphasis"><label>Родной язык<select><option>English</option><option>Русский</option></select></label><label>Язык обучения<select><option>Русский</option><option>English</option></select></label></div></div></section>`
+    html: () => `<span class="badge">Основной маршрут · Сцена 1</span><h2 class="screen-title">Аэропорт без лишнего стресса</h2><p>Это не урок про аэропорт. Это короткая репетиция, чтобы в реальной поездке ты не завис на первой же проблеме.</p>${visualStrip()}<div class="promise-card top-gap"><span class="section-kicker">Через 5 минут ты сможешь</span><ul class="promise-list"><li>попросить помощь</li><li>сказать, что не знаешь, куда идти</li><li>переспросить</li><li>подтвердить маршрут</li></ul></div><div class="grid compact-grid start-grid"><div class="info-box"><b>Основной маршрут</b><p>Сначала проходишь быстрый сильный прогон: слова, фразы и два коротких диалога.</p></div><div class="info-box"><b>Отдельные ситуации</b><p>После этого можно открыть багаж, дорогу в город и другие ветки без повторения всего экрана.</p></div></div><div class="meta-row"><span class="meta-chip">8 слов</span><span class="meta-chip">3 опоры</span><span class="meta-chip">2 диалога</span><span class="meta-chip">1 миссия</span></div><div class="cta-stack top-gap"><button class="choice primary-dark" onclick="go(1)">Начать основной маршрут</button></div><div class="settings-box top-gap"><span class="section-kicker">Языки</span>${languageSettingsMarkup()}</div>`
   },
   {
-    nav: 'Airport mission',
+    nav: 'Ситуация',
     heroClass: 'airport-start',
-    html: () => `<span class="badge">Scene 1 · Airport arrival</span><h2 class="screen-title">Ты только что прилетел и уже должен действовать</h2><p>Ты устал, чуть потерян и тебе нужно быстро сориентироваться. Эта сцена не учит “тему аэропорт” — она доводит до первого реального win после прилёта.</p><div class="mission-grid"><div class="glass-card"><span class="section-kicker">Mission</span><ul class="checklist"><li>ответить на базовые вопросы пограничника</li><li>узнать нужные знаки в среде</li><li>попросить помощь коротко и вежливо</li><li>переспросить и подтвердить маршрут</li></ul></div><div class="glass-card"><span class="section-kicker">Product promise</span><p>В конце сцены ученик не “узнал слова”, а смог пройти border warm-up и help flow голосом.</p></div></div>`
+    html: () => `<span class="badge">Шаг 1 · Ситуация</span><h2 class="screen-title">Ты прилетел. Нужно быстро сориентироваться.</h2><p>Сейчас не учим всё подряд. Сейчас держим в голове только 4 действия, которые реально спасают сцену.</p><div class="glass-card"><ul class="checklist"><li>пройти паспортный контроль</li><li>понять указатели</li><li>попросить помощь</li><li>уточнить следующий шаг</li></ul></div><div class="pressure-card top-gap"><b>Где будет давление</b><ul><li>тебе ответят слишком быстро</li><li>ты услышишь незнакомое слово</li><li>тебе зададут короткий follow-up</li></ul></div>`
   },
   {
-    nav: 'Environment words',
-    html: () => `<span class="badge">Web prep · new words</span><h2 class="screen-title">Новые слова — по одному, без словарной стены</h2><p>В этом блоке юзер видит только одно слово с одной картинкой. Сначала просмотр, потом короткий тест — и только затем переход дальше.</p>${newWordsFlow()}`
+    nav: 'Слова',
+    html: () => `<span class="badge">Шаг 2 · Слова</span><h2 class="screen-title">Слова, которые нужны в аэропорту</h2><p>Сначала карточки. Потом быстрая проверка.</p>${newWordsFlow()}`
   },
   {
-    nav: 'Phrase drills',
-    html: () => `<span class="badge">Web prep · phrase patterns</span><h2 class="screen-title screen-title-tight">Фразы — тоже по одному, плюс база конструкций под сцену</h2><p class="intro-copy-tight">Мы убрали длинный лонгрид и разбили фразы на последовательный flow: главная просьба → проблема → recovery → базовые глаголы → voice check.</p><div class="phrase-hero-stack"><div class="info-box dark"><b>Remember these 3 first</b><p>¿Me puede ayudar?<br>No sé adónde tengo que ir.<br>¿Puede repetir, por favor?</p></div><div class="tile-row phrase-chip-row"><span class="state-pill">quiero / quiere / quieren</span><span class="state-pill">voy / va / van</span><span class="state-pill">tengo / tiene / tienen</span></div></div>${phraseFlow()}`
+    nav: 'Фразы',
+    html: () => `<span class="badge">Шаг 3 · Фразы</span><h2 class="screen-title screen-title-tight">Короткие фразы для живой ситуации</h2><p class="intro-copy-tight">Соберём не «идеальные предложения», а короткие опоры, из которых потом собирается живая речь.</p><div class="phrase-hero-stack"><div class="info-box dark"><b>Главные фразы</b><p>¿Me puede ayudar?<br>No sé adónde tengo que ir.<br>¿Puede repetir, por favor?</p></div><div class="tile-row phrase-chip-row"><span class="state-pill">quiero / quiere / quieren</span><span class="state-pill">voy / va / van</span><span class="state-pill">tengo / tiene / tienen</span></div></div>${phraseFlow()}`
   },
   {
-    nav: 'Border control',
-    html: () => `<span class="badge">Telegram quick pass · warm-up</span><h2 class="screen-title">Пограничник: не читаем скрипт, а проходим ходы</h2><p>Эта мини-сцена теперь даёт живое ощущение задачи: вопрос → ответ → микро-фидбек → следующий ход.</p>${borderFlow()}`
+    nav: 'Паспортный контроль',
+    html: () => `<span class="badge">Шаг 4 · Диалог</span><h2 class="screen-title">Паспортный контроль</h2><p>Пройдём короткие ответы по шагам.</p>${borderFlow()}`
   },
   {
-    nav: 'Airport help',
-    html: () => `<span class="badge">Telegram quick pass · main scene</span><h2 class="screen-title">Главная airport help сцена — staged simulation</h2><p>Теперь learner не видит весь идеальный диалог заранее. Он проходит сцену кусками и тренирует правильный ход в нужный момент.</p>${helpFlow()}`
+    nav: 'Попросить помощь',
+    html: () => `<span class="badge">Шаг 5 · Диалог</span><h2 class="screen-title">Как попросить помощь</h2><p>Теперь это уже связная мини-сцена с давлением, а не просто ещё один quiz.</p>${helpFlow()}`
   },
   {
-    nav: 'Completion',
-    html: () => `<span class="badge">Scene complete</span><h2 class="screen-title screen-title-tight">Airport complete: первый реальный win</h2><p class="intro-copy-tight">Теперь финальный экран больше про ощущение прогресса и следующий шаг, а не про сухой отчёт.</p><div class="completion-grid"><div class="summary-card completion-summary"><b>Что уже забираешь с собой</b><div class="completion-sections"><div><span class="mini-tag">Can do now</span><ul><li>попросить помощь коротко и вежливо</li><li>сказать, что не знаешь, куда идти</li><li>перехватить разговор через recovery phrase</li><li>подтвердить маршрут и закрыть диалог</li></ul></div><div><span class="mini-tag">Base patterns</span><ul><li><b>quiero</b> — помощь или действие</li><li><b>voy / va / van</b> — движение и маршрут</li><li><b>tengo / tiene / tienen</b> — проблема, бронь или багаж</li></ul></div></div></div><div class="summary-card readiness-card success-card"><b>Mission markers</b><div class="readiness-number">${readinessScore()}/5</div><p>${readinessLabel()}</p><small>Даже если не все маркеры собраны, learner уже прошёл end-to-end сцену и может повторить только слабое место.</small></div></div><div class="cta-row completion-cta-row top-gap"><button class="choice primary-dark" onclick="setDeep()">Open Больше практики hub</button><button class="choice ghost quiet-link" onclick="flash('Next life scene could be city transfer / taxi.')">Continue to next life scene</button></div>`
+    nav: 'Итог',
+    html: () => `<span class="badge">Шаг 6 · Итог</span><h2 class="screen-title screen-title-tight">Миссия пройдена</h2><p class="intro-copy-tight">Не summary, а выход с ощущением: да, эту сцену уже можно прожить.</p><div class="completion-grid"><div class="summary-card completion-summary"><b>Что уже умеешь</b><div class="completion-sections"><div><span class="mini-tag">Навыки</span><ul><li>попросить помощь коротко и вежливо</li><li>сказать, что не знаешь, куда идти</li><li>переспросить, если не понял</li><li>подтвердить маршрут своими словами</li></ul></div><div><span class="mini-tag">Сцены</span><ul><li>паспортный контроль без ступора</li><li>короткий разговор у стойки информации</li><li>восстановление разговора после быстрой реплики</li></ul></div></div></div><div class="summary-card readiness-card success-card"><b>Что стоит повторить</b><div class="readiness-number">${readinessScore()}/5</div><p>${readinessLabel()}</p><small>Если счёт ниже максимума, логично повторить самый слабый шаг, а не проходить всё заново.</small></div></div><div class="cta-row completion-cta-row top-gap"><button class="choice ghost quiet-link" onclick="repeatWeakest()">Повторить слабое место</button><button class="choice primary-dark" onclick="setDeep()">Перейти в отдельные ситуации</button></div>`
   }
 ];
 
 const deepScreens = [
-  { nav: 'Больше практики hub', html: () => deepHub() },
-  { nav: 'Branch prep', html: () => deepBranch() },
-  { nav: 'Telegram branch', html: () => deepTelegram() }
+  { nav: 'Выбор', html: () => deepHub() },
+  { nav: 'Ситуация', html: () => deepBranch() },
+  { nav: 'Пример', html: () => deepTelegram() }
 ];
 
 function screens() {
@@ -1480,14 +1726,20 @@ function render() {
   screen.className = `content-card ${current.heroClass || ''}`.trim();
   screen.innerHTML = typeof current.html === 'function' ? current.html() : current.html;
   bindInteractive();
-  steps.innerHTML = data.map((s, i) => `<button class="step ${i === state.index ? 'active' : ''}" onclick="go(${i})"><span>${String(i + 1).padStart(2, '0')}</span>${s.nav}</button>`).join('');
+  steps.innerHTML = data.map((s, i) => `<button class="step ${i === state.index ? 'active' : ''}" onclick="go(${i})"><span>${String(i + 1).padStart(2, '0')}</span><div><b>${s.nav}</b><small>${i < state.index ? 'Пройдено' : i === state.index ? 'Сейчас' : 'Дальше'}</small></div></button>`).join('');
   quickBtn.classList.toggle('active', state.mode === 'quick');
   deepBtn.classList.toggle('active', state.mode === 'deep');
-  eyebrow.textContent = current.home ? 'Course entry · start the first scene' : (state.mode === 'quick' ? 'Scene 1 · Airport arrival' : 'Больше практики · Airport branches');
-  heroTitle.textContent = current.home ? 'Start with one real airport situation' : (state.mode === 'quick' ? 'Подготовься на Web. Справься в Telegram.' : 'Освой аэропорт глубже, по реальным веткам.');
-  heroCopy.textContent = current.home ? 'Испанский для реальной жизни.' : (state.mode === 'quick' ? 'Сначала короткая подготовка на экране, потом живая разговорная практика в Telegram.' : 'Выберите нужную ситуацию и перейдите к разговорной практике без лишних шагов.');
-  progressMeta.textContent = `${state.mode === 'quick' ? 'Базовый маршрут' : 'Больше практики'} · Step ${state.index + 1}/${data.length}`;
+  eyebrow.textContent = current.home ? 'Аэропорт' : (state.mode === 'quick' ? 'Аэропорт · основной маршрут' : 'Практика · следующая ситуация');
+  heroTitle.textContent = current.home ? 'Испанский без паники в аэропорту' : (state.mode === 'quick' ? 'Основной маршрут по шагам' : 'Отдельные ситуации для тренировки');
+  heroCopy.textContent = current.home ? 'Через несколько минут ты уже сможешь попросить помощь, переспросить и подтвердить маршрут.' : (state.mode === 'quick' ? 'Без лишней теории: только то, что пригодится в аэропорту.' : 'Выбирай нужную ситуацию и тренируй только её.');
+  progressMeta.textContent = `Шаг ${state.index + 1}/${data.length}`;
+  heroProgress.innerHTML = progressPills(data);
+  const next = data[state.index + 1];
+  controlsCopy.textContent = next ? `Шаг ${state.index + 1} из ${data.length} · дальше: ${next.nav}` : `Шаг ${state.index + 1} из ${data.length}`;
+  document.getElementById('next').textContent = nextLabel();
+  document.getElementById('prev').disabled = state.index === 0;
 }
+
 
 document.getElementById('next').onclick = () => { state.index = Math.min(state.index + 1, screens().length - 1); render(); };
 document.getElementById('prev').onclick = () => { state.index = Math.max(state.index - 1, 0); render(); };
@@ -1530,7 +1782,12 @@ Object.assign(window, {
   chooseHelpOption,
   nextHelpTurn,
   resetHelpFlow,
-  flash
+  flash,
+  revealVocabOptions,
+  revealPhraseProblem,
+  revealPhraseRecovery,
+  setVoiceScenario,
+  repeatWeakest
 });
 
 render();
