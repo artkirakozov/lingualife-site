@@ -876,51 +876,105 @@ const vocabFlowItems = [
   ['metro', 'метро', 'Частый способ добраться в город.', photoLibrary.signs]
 ];
 
+const vocabSentenceItems = [
+  {
+    sentence: 'Después del avión sigo hacia ____.',
+    prompt: 'Вставь слово в фразу: «После самолёта я иду в зону прилёта».',
+    answer: 'llegadas',
+    options: ['llegadas', 'equipaje', 'taxi']
+  },
+  {
+    sentence: 'Busco la ____ para salir del aeropuerto.',
+    prompt: 'Вставь слово в фразу: «Я ищу выход, чтобы выйти из аэропорта».',
+    answer: 'salida',
+    options: ['salida', 'información', 'metro']
+  },
+  {
+    sentence: 'Primero paso por el ____.',
+    prompt: 'Вставь слово в фразу: «Сначала я прохожу паспортный контроль».',
+    answer: 'control de pasaportes',
+    options: ['control de pasaportes', 'taxi', 'equipaje']
+  },
+  {
+    sentence: 'Voy a ____ para pedir ayuda.',
+    prompt: 'Вставь слово в фразу: «Я иду к стойке информации, чтобы попросить помощь».',
+    answer: 'información',
+    options: ['información', 'salida', 'aseos / baño']
+  },
+  {
+    sentence: 'Mi ____ no ha llegado.',
+    prompt: 'Вставь слово в фразу: «Мой багаж не приехал».',
+    answer: 'equipaje',
+    options: ['equipaje', 'metro', 'llegadas']
+  },
+  {
+    sentence: '¿Dónde están los ____?',
+    prompt: 'Вставь слово в фразу: «Где здесь туалет?»',
+    answer: 'aseos / baño',
+    options: ['aseos / baño', 'taxi', 'control de pasaportes']
+  },
+  {
+    sentence: 'Si estoy cansado, tomo un ____.',
+    prompt: 'Вставь слово в фразу: «Если я устал, я беру такси».',
+    answer: 'taxi',
+    options: ['taxi', 'metro', 'equipaje']
+  },
+  {
+    sentence: 'Para ir al centro puedo tomar el ____.',
+    prompt: 'Вставь слово в фразу: «Чтобы поехать в центр, я могу сесть на метро».',
+    answer: 'metro',
+    options: ['metro', 'información', 'salida']
+  }
+];
+
 const basePatternItems = [
   {
     kicker: 'Шаг 5',
     title: 'Скажи, что хочешь помощь',
-    note: 'Не отдельная грамматика, а готовый рабочий ход для ситуации, когда тебе реально нужна помощь.',
+    note: 'Задача на русском: «Мне нужна помощь». Логика простая: сначала говорящий, потом правильная форма querer под этого говорящего, потом смысловой хвост ayuda.',
     stem: 'querer',
     forms: [
       ['Yo', 'quiero', 'ayuda.'],
       ['Él', 'quiere', 'ayuda.'],
       ['Ellos', 'quieren', 'ayuda.']
     ],
-    prompt: 'Yo ___ ayuda.',
+    prompt: 'Собери по-испански: «Я хочу помощь / мне нужна помощь». Какую форму нужно поставить после Yo?',
     options: ['quiero', 'quiere', 'quieren'],
     answer: 'quiero',
-    sample: 'Yo quiero ayuda. / Él quiere ayuda. / Ellos quieren ayuda.'
+    sample: 'Yo quiero ayuda. / Él quiere ayuda. / Ellos quieren ayuda.',
+    logic: 'Yo требует форму quiero. Как только меняется действующее лицо, меняется и глагол: él → quiere, ellos → quieren.'
   },
   {
     kicker: 'Шаг 6',
     title: 'Скажи, что идёшь к выходу',
-    note: 'Эта форма нужна не сама по себе, а чтобы подтверждать маршрут и действие.',
+    note: 'Задача на русском: «Он идёт к выходу». Здесь мы тренируем ту же механику: сначала кто делает действие, потом форма ir под этого человека, потом маршрут.',
     stem: 'ir',
     forms: [
       ['Yo', 'voy', 'a la salida.'],
       ['Él', 'va', 'a la salida.'],
       ['Ellos', 'van', 'a la salida.']
     ],
-    prompt: 'Él ___ a la salida.',
+    prompt: 'Собери по-испански: «Он идёт к выходу». Какую форму нужно поставить после Él?',
     options: ['voy', 'va', 'van'],
     answer: 'va',
-    sample: 'Yo voy a la salida. / Él va a la salida. / Ellos van a la salida.'
+    sample: 'Yo voy a la salida. / Él va a la salida. / Ellos van a la salida.',
+    logic: 'С Él нужна форма va. Это не отдельное правило ради правила: так ты подтверждаешь чужой маршрут или пересказываешь инструкцию.'
   },
   {
     kicker: 'Шаг 7',
     title: 'Скажи, что у тебя проблема с багажом',
-    note: 'Через эту конструкцию ты называешь проблему так, чтобы разговор сразу сдвинулся дальше.',
+    note: 'Задача на русском: «У них проблема». Каркас тот же: кто именно, потом форма tener под это лицо, потом проблема.',
     stem: 'tener',
     forms: [
       ['Yo', 'tengo', 'un problema.'],
       ['Él', 'tiene', 'un problema.'],
       ['Ellos', 'tienen', 'un problema.']
     ],
-    prompt: 'Ellos ___ un problema.',
+    prompt: 'Собери по-испански: «У них проблема». Какую форму нужно поставить после Ellos?',
     options: ['tengo', 'tiene', 'tienen'],
     answer: 'tienen',
-    sample: 'Yo tengo un problema. / Él tiene un problema. / Ellos tienen un problema.'
+    sample: 'Yo tengo un problema. / Él tiene un problema. / Ellos tienen un problema.',
+    logic: 'С Ellos нужна форма tienen. Этот же шаблон потом легко переносится на себя: Yo tengo un problema con mi equipaje.'
   }
 ];
 
@@ -1100,6 +1154,14 @@ const state = {
   vocabQuizScore: 0,
   vocabTranslationOpen: false,
   vocabQuizReveal: false,
+  vocabNativeIndex: 0,
+  vocabNativeChoice: null,
+  vocabNativeAnswered: false,
+  vocabNativeScore: 0,
+  vocabSentenceIndex: 0,
+  vocabSentenceChoice: null,
+  vocabSentenceAnswered: false,
+  vocabSentenceScore: 0,
   phraseBuild: [],
   phraseTarget: ['¿', 'Me', 'puede', 'ayudar', '?'],
   phraseStage: 'intro',
@@ -1249,7 +1311,31 @@ function startVocabQuiz() {
   render();
 }
 
+function startVocabNativeQuiz() {
+  state.vocabStage = 'quizNative';
+  state.vocabNativeIndex = 0;
+  state.vocabNativeChoice = null;
+  state.vocabNativeAnswered = false;
+  state.vocabNativeScore = 0;
+  render();
+}
+
+function startVocabSentenceQuiz() {
+  state.vocabStage = 'quizSentence';
+  state.vocabSentenceIndex = 0;
+  state.vocabSentenceChoice = null;
+  state.vocabSentenceAnswered = false;
+  state.vocabSentenceScore = 0;
+  render();
+}
+
 function vocabQuizOptions(index) {
+  const target = vocabFlowItems[index];
+  const others = vocabFlowItems.filter((item) => item[0] !== target[0]).map((item) => item[0]);
+  return [target[0], ...others.slice(0, 2)].sort((a, b) => a.localeCompare(b));
+}
+
+function vocabNativeOptions(index) {
   const target = vocabFlowItems[index];
   const others = vocabFlowItems.filter((item) => item[0] !== target[0]).map((item) => item[0]);
   return [target[0], ...others.slice(0, 2)].sort((a, b) => a.localeCompare(b));
@@ -1264,12 +1350,52 @@ function chooseVocabQuiz(value) {
   render();
 }
 
+function chooseVocabNative(value) {
+  if (state.vocabNativeAnswered) return;
+  const target = vocabFlowItems[state.vocabNativeIndex][0];
+  state.vocabNativeChoice = value;
+  state.vocabNativeAnswered = true;
+  if (value === target) state.vocabNativeScore += 1;
+  render();
+}
+
+function chooseVocabSentence(value) {
+  if (state.vocabSentenceAnswered) return;
+  const target = vocabSentenceItems[state.vocabSentenceIndex].answer;
+  state.vocabSentenceChoice = value;
+  state.vocabSentenceAnswered = true;
+  if (value === target) state.vocabSentenceScore += 1;
+  render();
+}
+
 function nextVocabQuiz() {
   if (state.vocabQuizIndex < vocabFlowItems.length - 1) {
     state.vocabQuizIndex += 1;
     state.vocabQuizChoice = null;
     state.vocabQuizAnswered = false;
     state.vocabQuizReveal = false;
+  } else {
+    state.vocabStage = 'readyNative';
+  }
+  render();
+}
+
+function nextVocabNative() {
+  if (state.vocabNativeIndex < vocabFlowItems.length - 1) {
+    state.vocabNativeIndex += 1;
+    state.vocabNativeChoice = null;
+    state.vocabNativeAnswered = false;
+  } else {
+    state.vocabStage = 'readySentence';
+  }
+  render();
+}
+
+function nextVocabSentence() {
+  if (state.vocabSentenceIndex < vocabSentenceItems.length - 1) {
+    state.vocabSentenceIndex += 1;
+    state.vocabSentenceChoice = null;
+    state.vocabSentenceAnswered = false;
   } else {
     state.vocabStage = 'result';
   }
@@ -1285,6 +1411,14 @@ function resetVocabFlow() {
   state.vocabQuizScore = 0;
   state.vocabTranslationOpen = false;
   state.vocabQuizReveal = false;
+  state.vocabNativeIndex = 0;
+  state.vocabNativeChoice = null;
+  state.vocabNativeAnswered = false;
+  state.vocabNativeScore = 0;
+  state.vocabSentenceIndex = 0;
+  state.vocabSentenceChoice = null;
+  state.vocabSentenceAnswered = false;
+  state.vocabSentenceScore = 0;
   render();
 }
 
@@ -1340,24 +1474,40 @@ function checkPhrase() {
 function choosePhraseSub(value) {
   if (state.phraseStage !== 'substitute') return;
   state.phraseSubChoice = value;
-  if (value === 'explicar') state.phraseStage = 'problem';
+  render();
+}
+
+function nextPhraseSub() {
+  if (state.phraseSubChoice !== 'explicar') return;
+  state.phraseStage = 'problem';
+  state.phraseProblemChoice = null;
+  state.phraseProblemReveal = false;
   render();
 }
 
 function choosePhraseProblem(value) {
   if (state.phraseStage !== 'problem') return;
   state.phraseProblemChoice = value;
-  if (value === 'No sé adónde tengo que ir.') {
-    state.phraseStage = 'recovery';
-    state.phraseRecoveryReveal = false;
-  }
+  render();
+}
+
+function nextPhraseProblem() {
+  if (state.phraseProblemChoice !== 'No sé adónde tengo que ir.') return;
+  state.phraseStage = 'recovery';
+  state.phraseRecoveryChoice = null;
+  state.phraseRecoveryReveal = false;
   render();
 }
 
 function choosePhraseRecovery(value) {
   if (state.phraseStage !== 'recovery') return;
   state.phraseRecoveryChoice = value;
-  if (value === '¿Puede repetir, por favor?') state.phraseStage = 'basics';
+  render();
+}
+
+function nextPhraseRecovery() {
+  if (state.phraseRecoveryChoice !== '¿Puede repetir, por favor?') return;
+  state.phraseStage = 'basics';
   render();
 }
 
@@ -1531,27 +1681,51 @@ function handoffCard({ mode, branch, pending, phrases }) {
 }
 
 function newWordsFlow() {
+  const totalVocabScore = state.vocabQuizScore + state.vocabNativeScore + state.vocabSentenceScore;
+  const totalVocabTasks = vocabFlowItems.length * 3;
+
   if (state.vocabStage === 'intro') {
-    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Слова</span><span class="mini-score">${vocabFlowItems.length} слов</span></div><h3>Разберём слова, которые нужны прямо сейчас</h3><p>Смотри карточки по одной, а потом пройди короткую проверку.</p><div class="word-flow-intro"><button class="choice primary-dark" onclick="startVocabFlow()">Начать</button></div></div>`;
+    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Слова</span><span class="mini-score">${vocabFlowItems.length} слов</span></div><h3>Разберём слова, которые нужны прямо сейчас</h3><p>Сначала визуальные карточки, потом три типа закрепления: по картинке, по русскому слову и через вставку в короткие фразы.</p><div class="word-flow-intro"><button class="choice primary-dark" onclick="startVocabFlow()">Начать</button></div></div>`;
   }
 
   if (state.vocabStage === 'cards') {
     const item = vocabFlowItems[state.vocabCardIndex];
-    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Слова</span><span class="mini-score">${state.vocabCardIndex + 1}/${vocabFlowItems.length}</span></div><div class="single-word-card"><div class="single-word-photo" style="--photo:${item[3]}" role="img" aria-label="${item[1]}"></div><div class="single-word-copy"><strong>${item[0]}</strong><button class="choice ghost small-choice" onclick="toggleVocabTranslation()">${state.vocabTranslationOpen ? 'Скрыть перевод' : 'Показать перевод'}</button>${state.vocabTranslationOpen ? `<div class="word-translation"><em>${item[1]}</em><p>${item[2]}</p></div>` : ''}</div></div><div class="single-word-actions"><button class="choice ghost" onclick="prevVocabCard()" ${state.vocabCardIndex === 0 ? 'disabled' : ''}>Назад</button><button class="choice primary-dark" onclick="nextVocabCard()">${state.vocabCardIndex === vocabFlowItems.length - 1 ? 'Закончить' : 'Дальше'}</button></div></div>`;
+    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Слова · Визуально</span><span class="mini-score">${state.vocabCardIndex + 1}/${vocabFlowItems.length}</span></div><div class="single-word-card"><div class="single-word-photo" style="--photo:${item[3]}" role="img" aria-label="${item[1]}"></div><div class="single-word-copy"><strong>${item[0]}</strong><button class="choice ghost small-choice" onclick="toggleVocabTranslation()">${state.vocabTranslationOpen ? 'Скрыть перевод' : 'Показать перевод'}</button>${state.vocabTranslationOpen ? `<div class="word-translation"><em>${item[1]}</em><p>${item[2]}</p></div>` : ''}</div></div><div class="microcopy">Сначала связываем картинку и испанское слово без лишней теории.</div><div class="single-word-actions"><button class="choice ghost" onclick="prevVocabCard()" ${state.vocabCardIndex === 0 ? 'disabled' : ''}>Назад</button><button class="choice primary-dark" onclick="nextVocabCard()">${state.vocabCardIndex === vocabFlowItems.length - 1 ? 'К упражнениям' : 'Дальше'}</button></div></div>`;
   }
 
   if (state.vocabStage === 'ready') {
-    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Слова пройдены</span><span class="mini-score">${vocabFlowItems.length} из ${vocabFlowItems.length}</span></div><h3>Теперь короткая проверка</h3><p>Смотри на картинку и выбирай нужное слово.</p><div class="word-flow-intro"><button class="choice primary-dark" onclick="startVocabQuiz()">Начать проверку</button><button class="choice ghost" onclick="resetVocabFlow()">Посмотреть ещё раз</button></div></div>`;
+    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Упражнение 1</span><span class="mini-score">Картинка → слово</span></div><h3>Теперь подбор по картинке</h3><p>Смотри на изображение, сначала сам вспоминай слово, потом выбирай вариант.</p><div class="word-flow-intro"><button class="choice primary-dark" onclick="startVocabQuiz()">Начать</button><button class="choice ghost" onclick="resetVocabFlow()">Посмотреть карточки ещё раз</button></div></div>`;
   }
 
   if (state.vocabStage === 'quiz') {
     const item = vocabFlowItems[state.vocabQuizIndex];
     const options = vocabQuizOptions(state.vocabQuizIndex);
     const correct = state.vocabQuizChoice === item[0];
-    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Шаг · Проверка</span><span class="mini-score">${state.vocabQuizIndex + 1}/${vocabFlowItems.length}</span></div><div class="single-word-card quiz-card"><div class="single-word-photo" style="--photo:${item[3]}" role="img" aria-label="${item[1]}"></div><div class="single-word-copy"><strong>Сначала назови слово сам</strong><p class="microcopy">Посмотри на картинку и попробуй вспомнить испанское слово без подсказок.</p>${state.vocabQuizReveal ? `<div class="quiz-stack">${options.map((option) => `<button class="choice quiz-choice ${state.vocabQuizAnswered && option === item[0] ? 'correct' : ''} ${state.vocabQuizAnswered && state.vocabQuizChoice === option && option !== item[0] ? 'wrong' : ''}" onclick="chooseVocabQuiz('${option.replace(/'/g, "\\'")}')">${option}</button>`).join('')}</div>` : `<div class="recall-gate"><div class="target-line">Скажи вслух, потом открой варианты.</div><button class="choice ghost" onclick="revealVocabOptions()">Показать варианты</button></div>`}${state.vocabQuizAnswered ? `<div class="feedback ${correct ? 'good' : 'bad'}">${correct ? `Верно — ${item[0]}` : `Неверно. Правильный ответ: ${item[0]}`}</div><button class="choice primary-dark" onclick="nextVocabQuiz()">${state.vocabQuizIndex === vocabFlowItems.length - 1 ? 'Закончить' : 'Следующее слово'}</button>` : ''}</div></div></div>`;
+    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Упражнение 1</span><span class="mini-score">${state.vocabQuizIndex + 1}/${vocabFlowItems.length}</span></div><div class="single-word-card quiz-card"><div class="single-word-photo" style="--photo:${item[3]}" role="img" aria-label="${item[1]}"></div><div class="single-word-copy"><strong>Картинка → испанское слово</strong><p class="microcopy">Посмотри на картинку и попробуй сам назвать слово по-испански.</p>${state.vocabQuizReveal ? `<div class="quiz-stack">${options.map((option) => `<button class="choice quiz-choice ${state.vocabQuizAnswered && option === item[0] ? 'correct' : ''} ${state.vocabQuizAnswered && state.vocabQuizChoice === option && option !== item[0] ? 'wrong' : ''}" onclick="chooseVocabQuiz('${option.replace(/'/g, "\'")}')">${option}</button>`).join('')}</div>` : `<div class="recall-gate"><div class="target-line">Скажи вслух, потом открой варианты.</div><button class="choice ghost" onclick="revealVocabOptions()">Показать варианты</button></div>`}${state.vocabQuizAnswered ? `<div class="feedback ${correct ? 'good' : 'bad'}">${correct ? `Верно — ${item[0]}` : `Неверно. Правильный ответ: ${item[0]}`}</div><button class="choice primary-dark" onclick="nextVocabQuiz()">${state.vocabQuizIndex === vocabFlowItems.length - 1 ? 'Дальше к русским подсказкам' : 'Следующее слово'}</button>` : ''}</div></div></div>`;
   }
 
-  return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Проверка пройдена</span><span class="mini-score">${state.vocabQuizScore}/${vocabFlowItems.length}</span></div><h3>Готово — слова уже знакомы.</h3><p>Теперь можно переходить к фразам.</p><div class="word-flow-intro"><button class="choice primary-dark" onclick="go(3)">К фразам</button><button class="choice ghost" onclick="resetVocabFlow()">Повторить слова</button></div></div>`;
+  if (state.vocabStage === 'readyNative') {
+    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Упражнение 2</span><span class="mini-score">Русский → слово</span></div><h3>Теперь отталкиваемся от родного языка</h3><p>Видишь русское слово или задачу — быстро достаёшь испанский вариант.</p><div class="word-flow-intro"><button class="choice primary-dark" onclick="startVocabNativeQuiz()">Начать</button><button class="choice ghost" onclick="go(2)">Назад к началу слов</button></div></div>`;
+  }
+
+  if (state.vocabStage === 'quizNative') {
+    const item = vocabFlowItems[state.vocabNativeIndex];
+    const options = vocabNativeOptions(state.vocabNativeIndex);
+    const correct = state.vocabNativeChoice === item[0];
+    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Упражнение 2</span><span class="mini-score">${state.vocabNativeIndex + 1}/${vocabFlowItems.length}</span></div><h3>Подбери слово к русской подсказке</h3><div class="target-line">Собери по-испански: <b>${item[1]}</b></div><p class="microcopy">Это тренирует быстрый переход от русской задачи к испанскому слову.</p><div class="quiz-stack">${options.map((option) => `<button class="choice quiz-choice ${state.vocabNativeAnswered && option === item[0] ? 'correct' : ''} ${state.vocabNativeAnswered && state.vocabNativeChoice === option && option !== item[0] ? 'wrong' : ''}" onclick="chooseVocabNative('${option.replace(/'/g, "\'")}')">${option}</button>`).join('')}</div>${state.vocabNativeAnswered ? `<div class="feedback ${correct ? 'good' : 'bad'}">${correct ? `Да — ${item[1]} = ${item[0]}` : `Не совсем. Правильно: ${item[0]}`}</div><button class="choice primary-dark" onclick="nextVocabNative()">${state.vocabNativeIndex === vocabFlowItems.length - 1 ? 'Дальше к предложениям' : 'Следующее слово'}</button>` : ''}</div>`;
+  }
+
+  if (state.vocabStage === 'readySentence') {
+    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Упражнение 3</span><span class="mini-score">Слово в фразе</span></div><h3>Теперь вставляем слова в короткие предложения</h3><p>Так слово перестаёт жить отдельно и сразу встраивается в рабочую фразу.</p><div class="word-flow-intro"><button class="choice primary-dark" onclick="startVocabSentenceQuiz()">Начать</button><button class="choice ghost" onclick="go(2)">Повторить слова</button></div></div>`;
+  }
+
+  if (state.vocabStage === 'quizSentence') {
+    const item = vocabSentenceItems[state.vocabSentenceIndex];
+    const correct = state.vocabSentenceChoice === item.answer;
+    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Упражнение 3</span><span class="mini-score">${state.vocabSentenceIndex + 1}/${vocabSentenceItems.length}</span></div><h3>Вставь слово в предложение</h3><div class="target-line">${item.sentence}</div><p class="microcopy">${item.prompt}</p><div class="quiz-stack">${item.options.map((option) => `<button class="choice quiz-choice ${state.vocabSentenceAnswered && option === item.answer ? 'correct' : ''} ${state.vocabSentenceAnswered && state.vocabSentenceChoice === option && option !== item.answer ? 'wrong' : ''}" onclick="chooseVocabSentence('${option.replace(/'/g, "\'")}')">${option}</button>`).join('')}</div>${state.vocabSentenceAnswered ? `<div class="feedback ${correct ? 'good' : 'bad'}">${correct ? `Да — сюда подходит ${item.answer}` : `Не совсем. Правильно: ${item.answer}`}</div><button class="choice primary-dark" onclick="nextVocabSentence()">${state.vocabSentenceIndex === vocabSentenceItems.length - 1 ? 'Закончить блок слов' : 'Следующее предложение'}</button>` : ''}</div>`;
+  }
+
+  return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Слова закреплены</span><span class="mini-score">${totalVocabScore}/${totalVocabTasks}</span></div><h3>Готово — слова уже не висят в воздухе.</h3><p>Ты прошёл визуальное знакомство, подбор по картинке, выбор по-русски и вставку в короткие фразы.</p><div class="summary-grid micro-summary"><div class="summary-card"><b>Что уже закрепилось</b><ul><li>картинка → слово: ${state.vocabQuizScore}/${vocabFlowItems.length}</li><li>русский → испанский: ${state.vocabNativeScore}/${vocabFlowItems.length}</li><li>слово в фразе: ${state.vocabSentenceScore}/${vocabSentenceItems.length}</li></ul></div><div class="summary-card"><b>Что это даёт</b><ul><li>слово узнаётся визуально</li><li>быстрее достаётся из русской задачи</li><li>легче встраивается в живую речь</li></ul></div></div><div class="word-flow-intro"><button class="choice primary-dark" onclick="go(3)">К фразам</button><button class="choice ghost" onclick="resetVocabFlow()">Повторить слова</button></div></div>`;
 }
 
 function phraseStageProgress() {
@@ -1566,28 +1740,28 @@ function phraseFlow() {
 
   if (state.phraseStage === 'build') {
     const built = state.phraseBuild.join(' ');
-    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Фразы</span><span class="mini-score">1/7</span></div><h3>Собери главную просьбу</h3><p>Нужно не знать правило, а быстро доставать полезный кусок речи.</p><div class="tile-row">${[['¿', 'начало вопроса'], ['Me', 'мне'], ['puede', 'можете'], ['ayudar', 'помочь'], ['?', 'конец вопроса']].map(([x, h]) => tile(x, h, `addWord('${x}')`)).join('')}</div><div class="target-line">${built || 'Собери: “¿Me puede ayudar?”'}</div><div class="word-flow-intro"><button class="choice primary-dark" onclick="checkPhrase()">Проверить</button><button class="choice ghost" onclick="clearPhrase()">Сбросить</button></div></div>`;
+    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Фразы</span><span class="mini-score">1/7</span></div><h3>Собери главную просьбу</h3><p>Задача на русском: <b>«Можете мне помочь?»</b> Логика такая: открываем вопрос, называем адресата <b>me</b>, ставим вежливое <b>puede</b>, потом действие <b>ayudar</b>.</p><div class="tile-row">${[['¿', 'начало вопроса'], ['Me', 'мне'], ['puede', 'можете'], ['ayudar', 'помочь'], ['?', 'конец вопроса']].map(([x, h]) => tile(x, h, `addWord('${x}')`)).join('')}</div><div class="target-line">${built || 'Собери по-испански: “Можете мне помочь?”'}</div><div class="microcopy">Смысл не в том, чтобы выучить одну реплику, а в том, чтобы понять порядок: <b>кому</b> помогают и <b>какое действие</b> нужно.</div><div class="word-flow-intro"><button class="choice primary-dark" onclick="checkPhrase()">Проверить</button><button class="choice ghost" onclick="clearPhrase()">Сбросить</button></div></div>`;
   }
 
   if (state.phraseStage === 'substitute') {
     const ok = state.phraseSubChoice === 'explicar';
-    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Фразы</span><span class="mini-score">2/7</span></div><h3>Меняем только действие</h3><p>Одна схема даёт сразу несколько полезных фраз: <b>¿Me puede ... ?</b> Это уже не зубрёжка одной реплики, а управляемая вариативность.</p><div class="quiz-stack">${[['repetir','повторить'],['explicar','объяснить'],['indicar','подсказать']].map(([option,hint]) => `<button class="choice quiz-choice ${state.phraseSubChoice === option ? (ok && option === 'explicar' ? 'correct' : option === 'explicar' ? '' : 'wrong') : ''}" onclick="choosePhraseSub('${option}')"><strong>${option}</strong><span>${hint}</span></button>`).join('')}</div>${state.phraseSubChoice ? `<div class="feedback ${ok ? 'good' : 'bad'}">${ok ? 'Верно: “¿Me puede explicar?” — рабочая фраза для уточнения.' : 'Здесь нужен вариант explicar → “¿Me puede explicar?”'}</div><div class="microcopy">Тот же каркас потом даст и <b>¿Me puede repetir?</b>, и <b>¿Me puede indicar?</b></div>` : ''}</div>`;
+    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Фразы</span><span class="mini-score">2/7</span></div><h3>Меняем только действие</h3><p>Задача на русском: <b>«Можете мне объяснить?»</b> Каркас уже готов: <b>¿Me puede ... ?</b> Тебе нужно понять, что меняется только последнее действие.</p><div class="target-line">Выбери глагол, который превратит каркас в фразу «Можете мне объяснить?»</div><div class="quiz-stack">${[['repetir','повторить'],['explicar','объяснить'],['indicar','подсказать / указать направление']].map(([option,hint]) => `<button class="choice quiz-choice ${state.phraseSubChoice === option ? (ok && option === 'explicar' ? 'correct' : option === 'explicar' ? '' : 'wrong') : ''}" onclick="choosePhraseSub('${option}')"><strong>${option}</strong><span>${hint}</span></button>`).join('')}</div>${state.phraseSubChoice ? `<div class="feedback ${ok ? 'good' : 'bad'}">${ok ? 'Верно: “¿Me puede explicar?” Тут не строится новая грамматика — ты просто сохраняешь каркас и меняешь смысловой глагол.' : 'Здесь нужен вариант explicar → “¿Me puede explicar?”'}</div><div class="microcopy">Логика конструкции: <b>¿Me puede + действие?</b> Поэтому из одного каркаса рождаются и <b>¿Me puede repetir?</b>, и <b>¿Me puede indicar?</b></div>${ok ? `<div class="word-flow-intro"><button class="choice primary-dark" onclick="nextPhraseSub()">Дальше</button></div>` : ''}` : ''}</div>`;
   }
 
   if (state.phraseStage === 'problem') {
     const ok = state.phraseProblemChoice === 'No sé adónde tengo que ir.';
-    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Фразы</span><span class="mini-score">3/7</span></div><h3>Одна проблема — одна точная фраза</h3><p><b>Ситуация:</b> ты вышел после прилёта и не понимаешь, куда идти дальше.</p>${state.phraseProblemReveal ? `<div class="quiz-stack">${['No sé adónde tengo que ir.','Tengo un problema con mi equipaje.','Me alojo en un hotel.'].map((option) => `<button class="choice quiz-choice ${state.phraseProblemChoice === option ? (ok && option === 'No sé adónde tengo que ir.' ? 'correct' : option === 'No sé adónde tengo que ir.' ? '' : 'wrong') : ''}" onclick="choosePhraseProblem('${option.replace(/'/g, "\\'")}')">${option}</button>`).join('')}</div>` : `<div class="recall-gate"><div class="target-line">Сначала ответь сам по-испански. Потом, если нужно, открой варианты.</div><button class="choice ghost" onclick="revealPhraseProblem()">Показать варианты</button></div>`}${state.phraseProblemChoice ? `<div class="feedback ${ok ? 'good' : 'bad'}">${ok ? 'Да: это фраза для ситуации, когда ты потерялся.' : 'Здесь нужна фраза про маршрут: “No sé adónde tengo que ir.”'}</div>` : ''}</div>`;
+    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Фразы</span><span class="mini-score">3/7</span></div><h3>Одна проблема — одна точная фраза</h3><p><b>Ситуация:</b> ты вышел после прилёта и не понимаешь, куда идти дальше. Задача на русском: <b>«Я не знаю, куда мне идти.»</b></p>${state.phraseProblemReveal ? `<div class="quiz-stack">${['No sé adónde tengo que ir.','Tengo un problema con mi equipaje.','Me alojo en un hotel.'].map((option) => `<button class="choice quiz-choice ${state.phraseProblemChoice === option ? (ok && option === 'No sé adónde tengo que ir.' ? 'correct' : option === 'No sé adónde tengo que ir.' ? '' : 'wrong') : ''}" onclick="choosePhraseProblem('${option.replace(/'/g, "\\'")}')">${option}</button>`).join('')}</div>` : `<div class="recall-gate"><div class="target-line">Скажи по-испански: «Я не знаю, куда мне идти». Сначала попробуй сам, потом открой варианты.</div><button class="choice ghost" onclick="revealPhraseProblem()">Показать варианты</button></div>`}${state.phraseProblemChoice ? `<div class="feedback ${ok ? 'good' : 'bad'}">${ok ? 'Да: <b>No sé</b> = «я не знаю», <b>adónde</b> = «куда», <b>tengo que ir</b> = «мне нужно идти». Так фраза собирается по смысловым кускам, а не целиком наугад.' : 'Здесь нужна фраза про маршрут: “No sé adónde tengo que ir.”'}</div>${ok ? `<div class="word-flow-intro"><button class="choice primary-dark" onclick="nextPhraseProblem()">Дальше</button></div>` : ''}` : ''}</div>`;
   }
 
   if (state.phraseStage === 'recovery') {
     const ok = state.phraseRecoveryChoice === '¿Puede repetir, por favor?';
-    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Фразы</span><span class="mini-score">4/7</span></div><h3>Фраза, которая помогает не потеряться в разговоре</h3><p><b>Ситуация:</b> сотрудник ответил слишком быстро. Нельзя зависнуть — нужно перехватить разговор.</p>${state.phraseRecoveryReveal ? `<div class="quiz-stack">${['¿Puede repetir, por favor?','No, gracias.','Tengo tres días.'].map((option) => `<button class="choice quiz-choice ${state.phraseRecoveryChoice === option ? (ok && option === '¿Puede repetir, por favor?' ? 'correct' : option === '¿Puede repetir, por favor?' ? '' : 'wrong') : ''}" onclick="choosePhraseRecovery('${option.replace(/'/g, "\\'")}')">${option}</button>`).join('')}</div>` : `<div class="recall-gate"><div class="target-line">Сначала сам скажи фразу спасения. Только потом открывай варианты.</div><button class="choice ghost" onclick="revealPhraseRecovery()">Показать варианты</button></div>`}${state.phraseRecoveryChoice ? `<div class="feedback ${ok ? 'good' : 'bad'}">${ok ? 'Именно так: не угадывать, а мягко просить повторить.' : 'Здесь нужна фраза: “¿Puede repetir, por favor?”'}</div>` : ''}</div>`;
+    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Фразы</span><span class="mini-score">4/7</span></div><h3>Фраза, которая помогает не потеряться в разговоре</h3><p><b>Ситуация:</b> сотрудник ответил слишком быстро. Задача на русском: <b>«Повторите, пожалуйста.»</b> Это не ответ по сути, а фраза управления разговором.</p>${state.phraseRecoveryReveal ? `<div class="quiz-stack">${['¿Puede repetir, por favor?','No, gracias.','Tengo tres días.'].map((option) => `<button class="choice quiz-choice ${state.phraseRecoveryChoice === option ? (ok && option === '¿Puede repetir, por favor?' ? 'correct' : option === '¿Puede repetir, por favor?' ? '' : 'wrong') : ''}" onclick="choosePhraseRecovery('${option.replace(/'/g, "\\'")}')">${option}</button>`).join('')}</div>` : `<div class="recall-gate"><div class="target-line">Сначала сам собери фразу «Повторите, пожалуйста», а потом открывай варианты.</div><button class="choice ghost" onclick="revealPhraseRecovery()">Показать варианты</button></div>`}${state.phraseRecoveryChoice ? `<div class="feedback ${ok ? 'good' : 'bad'}">${ok ? 'Именно так: <b>puede repetir</b> = «можете повторить», <b>por favor</b> смягчает просьбу. Логика тут не в переводе слово в слово, а в вежливом действии, которое возвращает тебе контроль.' : 'Здесь нужна фраза: “¿Puede repetir, por favor?”'}</div>${ok ? `<div class="word-flow-intro"><button class="choice primary-dark" onclick="nextPhraseRecovery()">Дальше</button></div>` : ''}` : ''}</div>`;
   }
 
   if (state.phraseStage === 'basics') {
     const item = basePatternItems[state.phraseBasicsIndex];
     const ok = state.phraseBasicsChoice === item.answer;
-    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">${item.kicker}</span><span class="mini-score">${5 + state.phraseBasicsIndex}/7</span></div><h3>${item.title}</h3><p>${item.note}</p><div class="pattern-family">${item.forms.map(([subject, verb, tail]) => `<div class="pattern-row"><span>${subject}</span><strong>${verb}</strong><em>${tail}</em></div>`).join('')}</div><div class="target-line">${item.prompt}</div><div class="quiz-stack">${item.options.map((option) => `<button class="choice quiz-choice ${state.phraseBasicsAnswered && option === item.answer ? 'correct' : ''} ${state.phraseBasicsAnswered && state.phraseBasicsChoice === option && option !== item.answer ? 'wrong' : ''}" onclick="chooseBasePattern('${option}')">${option}</button>`).join('')}</div>${state.phraseBasicsAnswered ? `<div class="feedback ${ok ? 'good' : 'bad'}">${ok ? `Да — ${item.sample}` : `Не совсем. Правильно: ${item.sample}`}</div><div class="word-flow-intro"><button class="choice primary-dark" onclick="nextBasePattern()">${state.phraseBasicsIndex === basePatternItems.length - 1 ? 'К проверке вслух' : 'Следующая конструкция'}</button><button class="choice ghost" onclick="skipToPhraseVoice()">Пропустить</button></div>` : ''}</div>`;
+    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">${item.kicker}</span><span class="mini-score">${5 + state.phraseBasicsIndex}/7</span></div><h3>${item.title}</h3><p>${item.note}</p><div class="pattern-family">${item.forms.map(([subject, verb, tail]) => `<div class="pattern-row"><span>${subject}</span><strong>${verb}</strong><em>${tail}</em></div>`).join('')}</div><div class="target-line">${item.prompt}</div><div class="microcopy">Смотри на три строки выше как на один шаблон: меняется <b>кто говорит</b> → меняется форма глагола → хвост фразы остаётся тем же.</div><div class="quiz-stack">${item.options.map((option) => `<button class="choice quiz-choice ${state.phraseBasicsAnswered && option === item.answer ? 'correct' : ''} ${state.phraseBasicsAnswered && state.phraseBasicsChoice === option && option !== item.answer ? 'wrong' : ''}" onclick="chooseBasePattern('${option}')">${option}</button>`).join('')}</div>${state.phraseBasicsAnswered ? `<div class="feedback ${ok ? 'good' : 'bad'}">${ok ? `Да — ${item.sample}` : `Не совсем. Правильно: ${item.sample}`}</div><div class="microcopy"><b>Почему так:</b> ${item.logic}</div><div class="word-flow-intro"><button class="choice primary-dark" onclick="nextBasePattern()">${state.phraseBasicsIndex === basePatternItems.length - 1 ? 'К проверке вслух' : 'Следующая конструкция'}</button><button class="choice ghost" onclick="skipToPhraseVoice()">Пропустить</button></div>` : ''}</div>`;
   }
 
   if (state.phraseStage === 'voice') {
@@ -1687,7 +1861,7 @@ const quickScreens = [
   },
   {
     nav: 'Слова',
-    html: () => `<span class="badge">Шаг 2 · Слова</span><h2 class="screen-title">Слова, которые нужны в аэропорту</h2><p>Сначала карточки. Потом быстрая проверка.</p>${newWordsFlow()}`
+    html: () => `<span class="badge">Шаг 2 · Слова</span><h2 class="screen-title">Слова, которые нужны в аэропорту</h2><p>Сначала визуально знакомимся со словами, потом гоняем их через несколько типов упражнений.</p>${newWordsFlow()}`
   },
   {
     nav: 'Фразы',
