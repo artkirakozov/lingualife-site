@@ -177,6 +177,36 @@ button, select { font: inherit; }
 }
 .hero-stat strong { display: block; font-size: 24px; letter-spacing: -.04em; }
 .hero-stat span { color: var(--muted); font-size: 14px; }
+.hero-promise {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+}
+.promise-line {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(255,107,53,.12);
+  color: var(--accent-dark);
+  font-weight: 900;
+}
+.hero-outcomes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+.hero-outcome {
+  padding: 14px;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.78);
+  box-shadow: var(--shadow-soft);
+}
+.hero-outcome b { display:block; margin-bottom: 4px; }
+.hero-outcome span { color: var(--muted); font-size: 14px; line-height: 1.35; }
 .eyebrow, .section-kicker {
   color: var(--accent-dark);
   font-weight: 900;
@@ -625,6 +655,22 @@ p { color: var(--muted); font-size: 18px; line-height: 1.58; }
   background: transparent;
   border-style: dashed;
 }
+.panic-kit {
+  margin-top: 18px;
+  padding: 18px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(22,19,17,.94), rgba(69,43,28,.92));
+  color: #fff7e8;
+  box-shadow: var(--shadow);
+}
+.panic-kit p,
+.panic-kit li { color: rgba(255,247,232,.88); }
+.panic-kit ul {
+  margin: 12px 0 0;
+  padding-left: 20px;
+  display: grid;
+  gap: 8px;
+}
 .deep-lock {
   margin-top: 18px;
   padding: 16px 18px;
@@ -648,6 +694,12 @@ p { color: var(--muted); font-size: 18px; line-height: 1.58; }
 }
 .voice-button.recording { background:#dc2626; animation:pulse 1s infinite; }
 .voice-button.done { background:#16a34a; }
+.voice-note {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 750;
+}
 @keyframes pulse { 50% { opacity: .4; } }
 .scenario-grid {
   display: grid;
@@ -671,6 +723,28 @@ p { color: var(--muted); font-size: 18px; line-height: 1.58; }
 .scenario-card.active {
   border-color: rgba(255,107,53,.3);
   box-shadow: 0 0 0 3px rgba(255,107,53,.12), var(--shadow-soft);
+}
+.telegram-value {
+  margin-top: 18px;
+  padding: 18px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(31,111,235,.12), rgba(13,141,92,.1));
+  border: 1px solid rgba(31,111,235,.16);
+}
+.telegram-value h3 { margin: 0 0 8px; }
+.telegram-state {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+.telegram-state span {
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.76);
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 900;
 }
 .ai-feedback {
   margin-top:14px;
@@ -742,6 +816,10 @@ p { color: var(--muted); font-size: 18px; line-height: 1.58; }
   transform: none;
   box-shadow: none;
 }
+.controls .primary.locked {
+  background: rgba(22,19,17,.18);
+  color: rgba(22,19,17,.62);
+}
 .summary-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
 .readiness-card { display:grid; align-content:start; gap:10px; }
 .readiness-number { font-size: 52px; line-height: 1; letter-spacing: -.06em; font-weight: 900; }
@@ -802,6 +880,7 @@ p { color: var(--muted); font-size: 18px; line-height: 1.58; }
   .single-word-actions, .word-flow-intro, .controls-actions { flex-direction: column; }
   .quiz-stack, .cta-stack { width: 100%; }
   .mode-card { padding: 14px; }
+  .hero-outcomes { grid-template-columns: 1fr; }
   .step { padding: 11px 10px; }
   .progress-pills { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; }
   .progress-pill { white-space: nowrap; }
@@ -813,8 +892,8 @@ p { color: var(--muted); font-size: 18px; line-height: 1.58; }
   <div class="app">
     <aside class="sidebar">
       <div class="brand-wrap">
-        <div class="brand">Life Learning</div>
-        <div class="subtitle">Испанский для реальной жизни</div>
+        <div class="brand">LinguaLife</div>
+        <div class="subtitle">Spanish for Real Life</div>
       </div>
       <div class="progress-meta" id="progressMeta">Шаг 1/7</div>
       <nav id="steps"></nav>
@@ -1136,6 +1215,111 @@ const branchData = {
       ['bot', 'Entiendo. ¿Tiene la etiqueta?'],
       ['user', 'Sí, aquí tiene la etiqueta. ¿Qué tengo que hacer ahora?']
     ]
+  },
+  border: {
+    label: 'Паспортный контроль',
+    nav: 'Контроль',
+    badge: 'Ситуация',
+    title: 'Короткие ответы на границе',
+    intro: 'Здесь ты тренируешь спокойные ответы на типовые вопросы без длинных объяснений.',
+    goal: 'Ответить на цель поездки, срок, жильё и резерв.',
+    tip: 'Говори коротко: цель, срок, адрес или отель, подтверждение брони.',
+    words: [
+      ['turismo', 'туризм'], ['trabajo', 'работа'], ['me quedo', 'я остаюсь'], ['reserva', 'бронь'], ['hotel', 'отель'], ['vuelvo', 'я возвращаюсь']
+    ],
+    patterns: [
+      'Vengo por turismo.',
+      'Me quedo tres días.',
+      'Me alojo en un hotel.',
+      'Sí, tengo reserva.'
+    ],
+    tasks: [
+      'Ответить на цель поездки.',
+      'Назвать срок пребывания.',
+      'Подтвердить жильё и бронь.'
+    ],
+    telegram: [
+      'state.scene_id=airport_01',
+      'state.mode=deep_dive',
+      'state.branch=border_control',
+      'pending_task=answer_border_questions'
+    ],
+    dialogue: [
+      ['bot', 'Agente: ¿Turismo o trabajo?'],
+      ['user', 'Vengo por turismo.'],
+      ['bot', '¿Cuántos días se queda?'],
+      ['user', 'Me quedo tres días. Me alojo en un hotel.']
+    ]
+  },
+  documents: {
+    label: 'Потерял документы',
+    nav: 'Документы',
+    badge: 'Ситуация',
+    title: 'Если пропал документ или важная вещь',
+    intro: 'Здесь ты учишься быстро назвать потерю, попросить помощь и понять следующий шаг.',
+    goal: 'Сообщить, что потерял документ или вещь, и попросить инструкцию.',
+    tip: 'Главное — назвать предмет, место и спросить, куда обратиться.',
+    words: [
+      ['pasaporte', 'паспорт'], ['documento', 'документ'], ['perdido', 'потерянный'], ['oficina', 'офис'], ['policía', 'полиция'], ['ayuda', 'помощь']
+    ],
+    patterns: [
+      'He perdido mi pasaporte.',
+      'No encuentro mi documento.',
+      '¿Dónde está la oficina de objetos perdidos?',
+      '¿Qué tengo que hacer ahora?'
+    ],
+    tasks: [
+      'Назвать, что именно потерялось.',
+      'Спросить, где бюро находок или полиция.',
+      'Понять первый следующий шаг.'
+    ],
+    telegram: [
+      'state.scene_id=airport_01',
+      'state.mode=deep_dive',
+      'state.branch=lost_document',
+      'pending_task=report_lost_document'
+    ],
+    dialogue: [
+      ['bot', 'Información: ¿Qué ha perdido?'],
+      ['user', 'He perdido mi pasaporte.'],
+      ['bot', 'Tiene que ir a la oficina de policía.'],
+      ['user', '¿Dónde está? ¿Me puede indicar?']
+    ]
+  },
+  connection: {
+    label: 'Пересадка',
+    nav: 'Пересадка',
+    badge: 'Ситуация',
+    title: 'Когда нужно успеть на следующий рейс',
+    intro: 'Здесь ты тренируешь вопросы про терминал, ворота и время до посадки.',
+    goal: 'Понять, куда идти на пересадку и сколько времени осталось.',
+    tip: 'Сначала уточни gate или terminal, потом проверь время и направление.',
+    words: [
+      ['conexión', 'пересадка'], ['puerta', 'ворота'], ['terminal', 'терминал'], ['embarque', 'посадка'], ['retraso', 'задержка'], ['pantalla', 'табло']
+    ],
+    patterns: [
+      'Tengo una conexión.',
+      '¿Dónde está la puerta B12?',
+      '¿Cuánto tiempo tengo?',
+      '¿Tengo que cambiar de terminal?'
+    ],
+    tasks: [
+      'Сказать, что у тебя пересадка.',
+      'Уточнить gate или terminal.',
+      'Проверить, сколько времени осталось.'
+    ],
+    telegram: [
+      'state.scene_id=airport_01',
+      'state.mode=deep_dive',
+      'state.branch=flight_connection',
+      'pending_task=find_next_gate'
+    ],
+    dialogue: [
+      ['bot', 'Agente: ¿Cuál es su vuelo de conexión?'],
+      ['user', 'Tengo una conexión a Madrid.'],
+      ['bot', 'Sale de la puerta B12.'],
+      ['user', '¿Tengo que cambiar de terminal?']
+    ]
   }
 };
 
@@ -1246,9 +1430,18 @@ function visualStrip() {
   return `<div class="visual-strip route-strip"><div class="route-card route-active"><span class="route-step">Старт</span><strong>Аэропорт</strong><em>Слова, фразы и два коротких диалога</em></div></div>`;
 }
 
+function panicKit() {
+  return `<div class="panic-kit"><span class="section-kicker">Panic kit</span><h3>Три фразы, которые спасают сцену</h3><p>Когда собеседник говорит быстро или маршрут распадается, держи под рукой короткие repair moves.</p><ul><li><b>¿Puede repetir, por favor?</b> — повторите, пожалуйста</li><li><b>Más despacio, por favor.</b> — помедленнее, пожалуйста</li><li><b>No entiendo. ¿Me puede explicar?</b> — я не понимаю, объясните, пожалуйста</li></ul></div>`;
+}
+
+function telegramValueCard() {
+  return `<div class="telegram-value"><span class="section-kicker">Web → Telegram</span><h3>Web готовит. Telegram активирует голосом.</h3><p>На сайте ты разбираешь фразы и сцену. Затем тот же контекст уходит в Telegram: voice-note, 2–4 хода диалога и компактный feedback по смыслу.</p><div class="telegram-state"><span>scene_id: airport_01</span><span>mode: quick_pass</span><span>pending: voice_scene</span></div></div>`;
+}
+
 function nextLabel() {
   const data = screens();
   const next = data[state.index + 1];
+  if (state.mode === 'quick' && next && !quickStepReady(state.index)) return 'Заверши шаг';
   return next ? `Дальше: ${next.nav}` : (state.mode === 'quick' ? 'К отдельным ситуациям' : 'Готово');
 }
 
@@ -1261,7 +1454,37 @@ function toggleHints() { state.showHints = !state.showHints; render(); }
 function setBranch(branch) { state.branch = branch; state.index = 1; render(); }
 function setDeep() { state.mode = 'deep'; state.index = 0; render(); }
 function setQuick() { state.mode = 'quick'; state.index = 0; render(); }
-function go(i) { state.index = i; render(); }
+function quickStepReady(index) {
+  if (index <= 1) return true;
+  if (index === 2) return state.vocabStage === 'result';
+  if (index === 3) return phraseFlowDone();
+  if (index === 4) return state.borderStage === 'result';
+  if (index === 5) return state.helpStage === 'result';
+  return true;
+}
+
+function canMoveForward() {
+  return state.mode === 'deep' || quickStepReady(state.index);
+}
+
+function lockedStepMessage(index = state.index) {
+  const messages = {
+    2: 'Заверши блок слов: карточки, подбор и фразы со словами.',
+    3: 'Собери фразы и пройди голосовую симуляцию.',
+    4: 'Заверши три вопроса паспортного контроля.',
+    5: 'Заверши мини-сцену у стойки информации.'
+  };
+  return messages[index] || 'Заверши действие на текущем экране.';
+}
+
+function go(i) {
+  if (state.mode === 'quick' && i > state.index && !quickStepReady(state.index)) {
+    flash(lockedStepMessage());
+    return;
+  }
+  state.index = i;
+  render();
+}
 function scrollToHowItWorks() {
   const target = document.getElementById('howItWorks');
   if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -1677,7 +1900,7 @@ function tile(label, hint, action) {
 }
 
 function handoffCard({ mode, branch, pending, phrases }) {
-  return `<div class="handoff-card"><div><span class="section-kicker">Готово</span><h3>Можно переходить дальше</h3><p>Ты уже собрал куски речи, которые потом можно отправлять голосом почти без подготовки.</p></div><div class="code-card"><b>Фразы для повтора</b><code>${phrases.join(' · ')}</code></div><div class="cta-row"><button class="choice primary-dark" onclick="flash('Переходим к следующему шагу.')">Дальше</button><button class="choice ghost" onclick="flash('При желании можно ещё раз пройти фразы.')">Повторить</button></div></div>`;
+  return `<div class="handoff-card"><div><span class="section-kicker">Telegram handoff</span><h3>Продолжить сцену голосом</h3><p>Web подготовил фразы и структуру. Следующий слой — короткие голосовые ответы в Telegram с тем же контекстом сцены.</p></div><div class="telegram-state"><span>scene: airport_01</span><span>mode: ${mode}</span><span>branch: ${branch}</span><span>next: ${pending}</span></div><div class="code-card"><b>Фразы для повтора</b><code>${phrases.join(' · ')}</code></div><div class="cta-row"><button class="choice primary-dark" onclick="flash('Telegram-переход будет подключён в следующем слое MVP.')">Открыть Telegram-тренировку</button><button class="choice ghost" onclick="flash('Фразы останутся в контексте этой сцены.')">Повторить фразы</button></div></div>`;
 }
 
 function newWordsFlow() {
@@ -1766,7 +1989,7 @@ function phraseFlow() {
 
   if (state.phraseStage === 'voice') {
     const scenario = voiceScenarios[state.voiceScenarioIndex];
-    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Диалог · ответ вслух</span><span class="mini-score">7/7</span></div><h3>Вот ситуация — ответь по-испански</h3><p>Представь, что это короткая голосовуха в Telegram: без чтения с экрана, без идеальных формулировок, но по делу.</p><div class="scenario-grid">${voiceScenarios.map((item, index) => `<button class="scenario-card ${state.voiceScenarioIndex === index ? 'active' : ''}" onclick="setVoiceScenario(${index})"><strong>${item.title}</strong><span>${item.prompt}</span></button>`).join('')}</div><div class="scenario-coach"><b>Что нужно сделать</b><p>${scenario.prompt}</p><ul>${scenario.coaching.map((tip) => `<li>${tip}</li>`).join('')}</ul><div class="pressure-inline">В реальном продукте тут будет быстрый голосовой ответ под лёгким тайм-pressure.</div></div><button class="voice-button ${state.voiceRecording ? 'recording' : ''} ${state.voiceDone ? 'done' : ''}" onclick="toggleVoice()">${state.voiceRecording ? 'Остановить запись' : state.voiceDone ? 'Записано ✓' : '🎙️ Записать ответ'}</button><button class="choice" onclick="checkVoice()">Проверить</button><button class="choice ghost" onclick="resetVoice()">Перезаписать</button><div class="target-line">Эталон: ${scenario.target}</div>${state.voiceDone && !state.voiceChecked ? `<p class="microcopy">Запись готова. Теперь проверь не «идеально ли», а понял бы тебя живой собеседник.</p>` : ''}${state.voiceChecked ? `<div class="ai-feedback"><b>Что получилось</b><ul><li>Ответ привязан к ситуации, а не к абстрактной фразе.</li><li>Ты либо просишь помощь, либо восстанавливаешь контроль, либо называешь проблему.</li><li>Этого уже достаточно, чтобы сцена не развалилась.</li></ul></div>` : ''}</div>`;
+    return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Диалог · голосовая симуляция</span><span class="mini-score">7/7</span></div><h3>Вот ситуация — ответь по-испански</h3><p>Представь короткую голосовуху в Telegram: без чтения с экрана, без идеальных формулировок, по делу.</p><div class="scenario-grid">${voiceScenarios.map((item, index) => `<button class="scenario-card ${state.voiceScenarioIndex === index ? 'active' : ''}" onclick="setVoiceScenario(${index})"><strong>${item.title}</strong><span>${item.prompt}</span></button>`).join('')}</div><div class="scenario-coach"><b>Что нужно сделать</b><p>${scenario.prompt}</p><ul>${scenario.coaching.map((tip) => `<li>${tip}</li>`).join('')}</ul><div class="pressure-inline">MVP note: сейчас это симуляция записи. Реальный микрофон и Telegram voice-note будут подключены следующим техническим слоем.</div></div><button class="voice-button ${state.voiceRecording ? 'recording' : ''} ${state.voiceDone ? 'done' : ''}" onclick="toggleVoice()">${state.voiceRecording ? 'Остановить симуляцию' : state.voiceDone ? 'Ответ отмечен' : 'Сымитировать голосовой ответ'}</button><button class="choice" onclick="checkVoice()">Проверить</button><button class="choice ghost" onclick="resetVoice()">Повторить</button><div class="voice-note">Сейчас кнопка фиксирует готовность ответа, запись с микрофона появится в MVP-слое.</div><div class="target-line">Эталон: ${scenario.target}</div>${state.voiceDone && !state.voiceChecked ? `<p class="microcopy">Ответ готов. Теперь проверь: понял бы тебя живой собеседник?</p>` : ''}${state.voiceChecked ? `<div class="ai-feedback"><b>Что получилось</b><ul><li>Ответ привязан к конкретной ситуации.</li><li>Ты просишь помощь, восстанавливаешь контроль или называешь проблему.</li><li>Этого достаточно, чтобы сцена двигалась дальше.</li></ul></div>` : ''}</div>`;
   }
 
   return `<div class="exercise word-flow-shell"><div class="exercise-topline"><span class="section-kicker">Фразы собраны</span><span class="mini-score">Готово</span></div><h3>Фразы готовы</h3><p>Ты собрал главные фразы и можешь переходить дальше.</p>${handoffCard({ mode: 'quick_pass', branch: 'border_then_main', pending: 'border_control', phrases: ['¿Me puede ayudar?', 'No sé adónde tengo que ir.', 'Yo quiero ayuda.', 'Yo tengo un problema.'] })}</div>`;
@@ -1852,12 +2075,12 @@ const quickScreens = [
   {
     nav: 'Старт',
     home: true,
-    html: () => `<span class="badge">Основной маршрут · Сцена 1</span><h2 class="screen-title">Аэропорт без лишнего стресса</h2><p>Это не урок про аэропорт. Это короткая репетиция, чтобы в реальной поездке ты не завис на первой же проблеме.</p>${visualStrip()}<div class="promise-card top-gap"><span class="section-kicker">Через 5 минут ты сможешь</span><ul class="promise-list"><li>попросить помощь</li><li>сказать, что не знаешь, куда идти</li><li>переспросить</li><li>подтвердить маршрут</li></ul></div><div class="grid compact-grid start-grid"><div class="info-box"><b>Основной маршрут</b><p>Сначала проходишь быстрый сильный прогон: слова, фразы и два коротких диалога.</p></div><div class="info-box"><b>Отдельные ситуации</b><p>После этого можно открыть багаж, дорогу в город и другие ветки без повторения всего экрана.</p></div></div><div class="meta-row"><span class="meta-chip">8 слов</span><span class="meta-chip">3 опоры</span><span class="meta-chip">2 диалога</span><span class="meta-chip">1 миссия</span></div><div class="cta-stack top-gap"><button class="choice primary-dark" onclick="go(1)">Начать основной маршрут</button></div><div class="settings-box top-gap"><span class="section-kicker">Языки</span>${languageSettingsMarkup()}</div>`
+    html: () => `<span class="badge">Scene 1 · Airport</span><h2 class="screen-title">Аэропорт без паники</h2><p>Короткая репетиция реального прилёта: ты просишь помощь, переспросишь быстрый ответ и подтвердить маршрут своими словами.</p><div class="hero-promise"><div class="promise-line">Web готовит. Telegram активирует голосом.</div><div class="hero-outcomes"><div class="hero-outcome"><b>5 минут</b><span>быстрый проход по аэропорту</span></div><div class="hero-outcome"><b>7 фраз</b><span>для просьбы, маршрута и recovery</span></div><div class="hero-outcome"><b>2 диалога</b><span>паспортный контроль и стойка информации</span></div></div></div>${visualStrip()}${panicKit()}${telegramValueCard()}<div class="grid compact-grid start-grid top-gap"><div class="info-box"><b>Основной маршрут</b><p>Сильный быстрый прогон: слова, фразы, голосовая симуляция и два коротких диалога.</p></div><div class="info-box"><b>Отдельные ситуации</b><p>После quick pass открываются ветки: город, багаж, паспортный контроль, документы и пересадка.</p></div></div><div class="meta-row"><span class="meta-chip">8 слов</span><span class="meta-chip">7 фраз</span><span class="meta-chip">2 диалога</span><span class="meta-chip">5 deep dives</span></div><div class="cta-stack top-gap"><button class="choice primary-dark" onclick="go(1)">Начать основной маршрут</button></div><div class="settings-box top-gap"><span class="section-kicker">Языки</span>${languageSettingsMarkup()}</div>`
   },
   {
     nav: 'Ситуация',
     heroClass: 'airport-start',
-    html: () => `<span class="badge">Шаг 1 · Ситуация</span><h2 class="screen-title">Ты прилетел. Нужно быстро сориентироваться.</h2><p>Сейчас не учим всё подряд. Сейчас держим в голове только 4 действия, которые реально спасают сцену.</p><div class="glass-card"><ul class="checklist"><li>пройти паспортный контроль</li><li>понять указатели</li><li>попросить помощь</li><li>уточнить следующий шаг</li></ul></div><div class="pressure-card top-gap"><b>Где будет давление</b><ul><li>тебе ответят слишком быстро</li><li>ты услышишь незнакомое слово</li><li>тебе зададут короткий follow-up</li></ul></div>`
+    html: () => `<span class="badge">Шаг 1 · Ситуация</span><h2 class="screen-title">Ты прилетел. Нужно быстро сориентироваться.</h2><p>Сейчас держим в голове 4 действия, которые реально спасают сцену.</p><div class="glass-card"><ul class="checklist"><li>пройти паспортный контроль</li><li>понять указатели</li><li>попросить помощь</li><li>уточнить следующий шаг</li></ul></div><div class="pressure-card top-gap"><b>Где будет давление</b><ul><li>тебе ответят слишком быстро</li><li>ты услышишь незнакомое слово</li><li>тебе зададут короткий follow-up</li></ul></div>${panicKit()}`
   },
   {
     nav: 'Слова',
@@ -1877,7 +2100,7 @@ const quickScreens = [
   },
   {
     nav: 'Итог',
-    html: () => `<span class="badge">Шаг 6 · Итог</span><h2 class="screen-title screen-title-tight">Миссия пройдена</h2><p class="intro-copy-tight">Не summary, а выход с ощущением: да, эту сцену уже можно прожить.</p><div class="completion-grid"><div class="summary-card completion-summary"><b>Что уже умеешь</b><div class="completion-sections"><div><span class="mini-tag">Навыки</span><ul><li>попросить помощь коротко и вежливо</li><li>сказать, что не знаешь, куда идти</li><li>переспросить, если не понял</li><li>подтвердить маршрут своими словами</li></ul></div><div><span class="mini-tag">Сцены</span><ul><li>паспортный контроль без ступора</li><li>короткий разговор у стойки информации</li><li>восстановление разговора после быстрой реплики</li></ul></div></div></div><div class="summary-card readiness-card success-card"><b>Что стоит повторить</b><div class="readiness-number">${readinessScore()}/5</div><p>${readinessLabel()}</p><small>Если счёт ниже максимума, логично повторить самый слабый шаг, а не проходить всё заново.</small></div></div><div class="cta-row completion-cta-row top-gap"><button class="choice ghost quiet-link" onclick="repeatWeakest()">Повторить слабое место</button><button class="choice primary-dark" onclick="setDeep()">Перейти в отдельные ситуации</button></div>`
+    html: () => `<span class="badge">Шаг 6 · Итог</span><h2 class="screen-title screen-title-tight">Миссия пройдена</h2><p class="intro-copy-tight">Финальный экран показывает, что уже отработано и какой следующий сценарий открыть.</p><div class="completion-grid"><div class="summary-card completion-summary"><b>Что уже умеешь</b><div class="completion-sections"><div><span class="mini-tag">Навыки</span><ul><li>попросить помощь коротко и вежливо</li><li>сказать, что не знаешь, куда идти</li><li>переспросить, если не понял</li><li>подтвердить маршрут своими словами</li></ul></div><div><span class="mini-tag">Сцены</span><ul><li>паспортный контроль без ступора</li><li>короткий разговор у стойки информации</li><li>восстановление разговора после быстрой реплики</li></ul></div></div></div><div class="summary-card readiness-card success-card"><b>Готовность</b><div class="readiness-number">${readinessScore()}/5</div><p>${readinessLabel()}</p><small>Если счёт ниже максимума, повтори самый слабый шаг.</small></div></div>${telegramValueCard()}<div class="cta-row completion-cta-row top-gap"><button class="choice ghost quiet-link" onclick="repeatWeakest()">Повторить слабое место</button><button class="choice primary-dark" onclick="setDeep()">Перейти в отдельные ситуации</button></div>`
   }
 ];
 
@@ -1897,6 +2120,7 @@ function render() {
   const data = screens();
   state.index = Math.max(0, Math.min(state.index, data.length - 1));
   const current = data[state.index];
+  const stepReady = canMoveForward();
   screen.className = `content-card ${current.heroClass || ''}`.trim();
   screen.innerHTML = typeof current.html === 'function' ? current.html() : current.html;
   bindInteractive();
@@ -1905,17 +2129,26 @@ function render() {
   deepBtn.classList.toggle('active', state.mode === 'deep');
   eyebrow.textContent = current.home ? 'Аэропорт' : (state.mode === 'quick' ? 'Аэропорт · основной маршрут' : 'Практика · следующая ситуация');
   heroTitle.textContent = current.home ? 'Испанский без паники в аэропорту' : (state.mode === 'quick' ? 'Основной маршрут по шагам' : 'Отдельные ситуации для тренировки');
-  heroCopy.textContent = current.home ? 'Через несколько минут ты уже сможешь попросить помощь, переспросить и подтвердить маршрут.' : (state.mode === 'quick' ? 'Без лишней теории: только то, что пригодится в аэропорту.' : 'Выбирай нужную ситуацию и тренируй только её.');
+  heroCopy.textContent = current.home ? 'Web готовит сцену. Telegram активирует её голосом.' : (state.mode === 'quick' ? 'Только то, что пригодится в аэропорту: слова, фразы, recovery и короткие диалоги.' : 'Выбирай нужную ситуацию и тренируй только её.');
   progressMeta.textContent = `Шаг ${state.index + 1}/${data.length}`;
   heroProgress.innerHTML = progressPills(data);
   const next = data[state.index + 1];
-  controlsCopy.textContent = next ? `Шаг ${state.index + 1} из ${data.length} · дальше: ${next.nav}` : `Шаг ${state.index + 1} из ${data.length}`;
-  document.getElementById('next').textContent = nextLabel();
+  controlsCopy.textContent = next ? (stepReady ? `Шаг ${state.index + 1} из ${data.length} · дальше: ${next.nav}` : lockedStepMessage()) : `Шаг ${state.index + 1} из ${data.length}`;
+  const nextButton = document.getElementById('next');
+  nextButton.textContent = nextLabel();
+  nextButton.classList.toggle('locked', Boolean(next && !stepReady));
   document.getElementById('prev').disabled = state.index === 0;
 }
 
 
-document.getElementById('next').onclick = () => { state.index = Math.min(state.index + 1, screens().length - 1); render(); };
+document.getElementById('next').onclick = () => {
+  if (!canMoveForward()) {
+    flash(lockedStepMessage());
+    return;
+  }
+  state.index = Math.min(state.index + 1, screens().length - 1);
+  render();
+};
 document.getElementById('prev').onclick = () => { state.index = Math.max(state.index - 1, 0); render(); };
 quickBtn.onclick = setQuick;
 deepBtn.onclick = setDeep;
